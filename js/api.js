@@ -189,48 +189,48 @@ const SchoolAPI = {
       const raw = res.data || res || {};
 
       const normalizedData = {
-        profil: {
+        profil: (raw.profil && Object.keys(raw.profil).length > 0) ? {
           ...DEFAULT_SCHOOL_DATA.profil,
-          ...(raw.profil || {})
-        },
-        guru: (raw.guru && raw.guru.length > 0) ? raw.guru.map((g, idx) => ({
+          ...raw.profil
+        } : DEFAULT_SCHOOL_DATA.profil,
+        guru: (raw.guru && Array.isArray(raw.guru) && raw.guru.length > 0) ? raw.guru.map((g, idx) => ({
           id: g.id || g.id_guru || `GTK-${g.urutan || idx + 1}`,
           nama: g.nama || g.nama_lengkap || 'Pendidik SDN Sukasari 4',
           jabatan: g.jabatan || 'Guru Kelas',
           kategori: g.kategori || (g.jabatan && g.jabatan.toLowerCase().includes('kepala') ? 'Pimpinan' : 'Pendidik'),
           urutan: g.urutan || g.urutan_tampil || (idx + 1),
           status_aktif: (g.status_aktif !== undefined) ? g.status_aktif : true,
-          foto_url: (g.foto_url && g.foto_url !== '-') ? g.foto_url : (g.foto && g.foto !== '-') ? g.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`
+          foto_url: (g.foto_url && g.foto_url !== '-' && !g.foto_url.includes('unsplash')) ? g.foto_url : (g.foto && g.foto !== '-' && !g.foto.includes('unsplash')) ? g.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`
         })) : DEFAULT_SCHOOL_DATA.guru,
-        berita: (raw.berita && raw.berita.length > 0) ? raw.berita.map((b, idx) => ({
+        berita: (raw.berita && Array.isArray(raw.berita) && raw.berita.length > 0) ? raw.berita.map((b, idx) => ({
           id: b.id || b.id_konten || `NWS-${idx + 1}`,
           tipe: b.tipe || 'Berita',
           judul: b.judul || 'Informasi Sekolah',
           tanggal: b.tanggal || b.tanggal_event || '2026-10-09',
           ringkasan: b.ringkasan || b.isi_lengkap || b.isi || '',
           isi: b.isi || b.isi_lengkap || b.ringkasan || '',
-          gambar_url: (b.gambar_url && b.gambar_url !== '-') ? b.gambar_url : (b.gambar && b.gambar !== '-') ? b.gambar : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`,
+          gambar_url: (b.gambar_url && b.gambar_url !== '-' && !b.gambar_url.includes('unsplash')) ? b.gambar_url : (b.gambar && b.gambar !== '-' && !b.gambar.includes('unsplash')) ? b.gambar : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`,
           status_tampil: (b.status_tampil !== undefined) ? b.status_tampil : true
         })) : DEFAULT_SCHOOL_DATA.berita,
-        prestasi: (raw.prestasi && raw.prestasi.length > 0) ? raw.prestasi.map((p, idx) => ({
+        prestasi: (raw.prestasi && Array.isArray(raw.prestasi) && raw.prestasi.length > 0) ? raw.prestasi.map((p, idx) => ({
           id: p.id || p.id_prestasi || `PRS-${idx + 1}`,
           lomba: p.lomba || p.nama_lomba || 'Lomba Prestasi',
           peringkat: p.peringkat || 'Juara 1',
           nama: p.nama || p.nama_siswa || 'Siswa Berprestasi',
           tingkat: p.tingkat || 'Kota Tangerang',
           tahun: p.tahun || '2026',
-          foto_url: (p.foto_url && p.foto_url !== '-') ? p.foto_url : (p.foto && p.foto !== '-') ? p.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`
+          foto_url: (p.foto_url && p.foto_url !== '-' && !p.foto_url.includes('unsplash')) ? p.foto_url : (p.foto && p.foto !== '-' && !p.foto.includes('unsplash')) ? p.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`
         })) : DEFAULT_SCHOOL_DATA.prestasi,
-        galeri: (raw.galeri && raw.galeri.length > 0) ? raw.galeri.map((f, idx) => ({
+        galeri: (raw.galeri && Array.isArray(raw.galeri) && raw.galeri.length > 0) ? raw.galeri.map((f, idx) => ({
           id: f.id || f.id_foto || `FTO-${idx + 1}`,
           judul: f.judul || f.judul_foto || 'Dokumentasi Sekolah',
           kategori: f.kategori || 'Kegiatan',
-          foto_url: (f.foto_url && f.foto_url !== '-') ? f.foto_url : (f.foto && f.foto !== '-') ? f.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`,
+          foto_url: (f.foto_url && f.foto_url !== '-' && !f.foto_url.includes('unsplash')) ? f.foto_url : (f.foto && f.foto !== '-' && !f.foto.includes('unsplash')) ? f.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`,
           tanggal: f.tanggal || '2026-10-09',
           keterangan: f.keterangan || f.judul || '',
           status_tampil: (f.status_tampil !== undefined) ? f.status_tampil : true
         })) : DEFAULT_SCHOOL_DATA.galeri,
-        users: (raw.users && raw.users.length > 0) ? raw.users : DEFAULT_SCHOOL_DATA.users
+        users: (raw.users && Array.isArray(raw.users) && raw.users.length > 0) ? raw.users : DEFAULT_SCHOOL_DATA.users
       };
 
       memoryCache = normalizedData;
@@ -239,17 +239,25 @@ const SchoolAPI = {
     } catch (error) {
       console.warn('Menggunakan fallback data lokal:', error.message);
       
+      let dataToReturn = DEFAULT_SCHOOL_DATA;
       const stored = localStorage.getItem('SDN_SUKASARI4_REAL_DATA');
       if (stored) {
         try {
-          return JSON.parse(stored);
+          const parsed = JSON.parse(stored);
+          if (parsed && typeof parsed === 'object') {
+            dataToReturn = {
+              profil: (parsed.profil && Object.keys(parsed.profil).length > 0) ? parsed.profil : DEFAULT_SCHOOL_DATA.profil,
+              guru: (parsed.guru && parsed.guru.length > 0) ? parsed.guru : DEFAULT_SCHOOL_DATA.guru,
+              berita: (parsed.berita && parsed.berita.length > 0) ? parsed.berita : DEFAULT_SCHOOL_DATA.berita,
+              prestasi: (parsed.prestasi && parsed.prestasi.length > 0) ? parsed.prestasi : DEFAULT_SCHOOL_DATA.prestasi,
+              galeri: (parsed.galeri && parsed.galeri.length > 0) ? parsed.galeri : DEFAULT_SCHOOL_DATA.galeri,
+              users: (parsed.users && parsed.users.length > 0) ? parsed.users : DEFAULT_SCHOOL_DATA.users
+            };
+          }
         } catch (e) {}
       }
-      if (memoryCache) return memoryCache;
-
-      memoryCache = DEFAULT_SCHOOL_DATA;
-      localStorage.setItem('SDN_SUKASARI4_REAL_DATA', JSON.stringify(DEFAULT_SCHOOL_DATA));
-      return DEFAULT_SCHOOL_DATA;
+      memoryCache = dataToReturn;
+      return dataToReturn;
     }
   },
 

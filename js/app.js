@@ -52,12 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const publicData = await window.SchoolAPI.getPublicData();
       const data = (publicData && publicData.data) ? publicData.data : (publicData || {});
-      
-      state.profil = data.profil || {};
-      state.guru = data.guru || [];
-      state.berita = data.berita || [];
-      state.prestasi = data.prestasi || [];
-      state.galeri = data.galeri || [];
+      const fallback = (window.SchoolAPI && window.SchoolAPI.DEFAULT_SCHOOL_DATA) ? window.SchoolAPI.DEFAULT_SCHOOL_DATA : {};
+
+      state.profil = (data.profil && Object.keys(data.profil).length > 0) ? data.profil : (fallback.profil || {});
+      state.guru = (data.guru && data.guru.length > 0) ? data.guru : (fallback.guru || []);
+      state.berita = (data.berita && data.berita.length > 0) ? data.berita : (fallback.berita || []);
+      state.prestasi = (data.prestasi && data.prestasi.length > 0) ? data.prestasi : (fallback.prestasi || []);
+      state.galeri = (data.galeri && data.galeri.length > 0) ? data.galeri : (fallback.galeri || []);
 
       renderProfil();
       renderGuru();
@@ -66,6 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
       renderGaleri();
     } catch (error) {
       console.error('Terjadi kesalahan saat memuat data aplikasi:', error);
+      const fallback = (window.SchoolAPI && window.SchoolAPI.DEFAULT_SCHOOL_DATA) ? window.SchoolAPI.DEFAULT_SCHOOL_DATA : {};
+
+      state.profil = state.profil || fallback.profil || {};
+      state.guru = (state.guru && state.guru.length > 0) ? state.guru : (fallback.guru || []);
+      state.berita = (state.berita && state.berita.length > 0) ? state.berita : (fallback.berita || []);
+      state.prestasi = (state.prestasi && state.prestasi.length > 0) ? state.prestasi : (fallback.prestasi || []);
+      state.galeri = (state.galeri && state.galeri.length > 0) ? state.galeri : (fallback.galeri || []);
+
       renderProfil();
       renderGuru();
       renderBerita();
