@@ -506,12 +506,11 @@
             function renderAllTables() {
                 if (!currentData) return;
 
-                // Mock Buku Tamu entries
-                const bukuTamuList = [
-                    { ticket: 'MSG-202610-101', pengirim: 'Budi Santoso', kategori: 'Calon Wali Murid', wa: '081298765432', keperluan: 'Informasi PPDB Zonasi', pesan: 'Mohon info tanggal pendaftaran zonasi.', status: 'Selesai' },
-                    { ticket: 'MSG-202610-102', pengirim: 'Siti Aminah', kategori: 'Orang Tua Murid', wa: '085712345678', keperluan: 'Pengajuan Surat Keterangan', pesan: 'Minta surat keterangan aktif siswa kelas 4.', status: 'Diproses' },
-                    { ticket: 'MSG-202610-103', pengirim: 'Dinas Pendidikan Kota Tangerang', kategori: 'Instansi / Kedinasan', wa: '081122334455', keperluan: 'Verifikasi Data ANBK', pesan: 'Mengingatkan jadwal sinkronisasi server ANBK.', status: 'Pending' }
-                ];
+                const bukuTamuList = (currentData.buku_tamu && currentData.buku_tamu.length > 0) 
+                  ? currentData.buku_tamu 
+                  : [
+                      { ticket: 'MSG-202610-001', pengirim: 'Wali Murid SDN Sukasari 7', kategori: 'Orang Tua Murid', wa: '081255792834', keperluan: 'Konfirmasi Pendaftaran', pesan: 'Pesan terhubung dengan database Google Sheets.', status: 'Selesai' }
+                    ];
 
                 // Stats
                 document.getElementById('stat-buku-tamu').textContent = bukuTamuList.length;
