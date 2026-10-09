@@ -3,7 +3,7 @@
  * Logika interaktivitas UI publik SDN Sukasari 4 Kota Tangerang.
  * Rendering data dinamis dari SchoolAPI (GET getPublicData),
  * pembersihan skeleton loader, pemuatan gambar lokal resmi (asset/images/sdnsukasari4/),
- * penanganan modal detail berita, filter kategori GTK & Berita, dan validasi form buku tamu.
+ * penanganan galeri kegiatan/fasilitas, modal detail berita, filter GTK & Berita, dan validasi form buku tamu.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     guru: [],
     berita: [],
     prestasi: [],
+    galeri: [],
     selectedGtkCategory: 'Semua',
     selectedNewsType: 'Semua'
   };
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'asset/images/sdnsukasari4/images 4.jpg'
   ];
 
-  // DOM Elements (Mendukung ID lama & baru)
+  // DOM Elements
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileOverlay = document.getElementById('mobile-menu-overlay');
@@ -50,21 +51,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load Data dari API / Graceful Fallback
     try {
       const publicData = await window.SchoolAPI.getPublicData();
-      state.profil = (publicData && publicData.profil) ? publicData.profil : {};
-      state.guru = (publicData && publicData.guru && publicData.guru.length > 0) ? publicData.guru : [];
-      state.berita = (publicData && publicData.berita && publicData.berita.length > 0) ? publicData.berita : [];
-      state.prestasi = (publicData && publicData.prestasi && publicData.prestasi.length > 0) ? publicData.prestasi : [];
+      const data = (publicData && publicData.data) ? publicData.data : (publicData || {});
+      
+      state.profil = data.profil || {};
+      state.guru = data.guru || [];
+      state.berita = data.berita || [];
+      state.prestasi = data.prestasi || [];
+      state.galeri = data.galeri || [];
 
       renderProfil();
       renderGuru();
       renderBerita();
       renderPrestasi();
+      renderGaleri();
     } catch (error) {
       console.error('Terjadi kesalahan saat memuat data aplikasi:', error);
       renderProfil();
       renderGuru();
       renderBerita();
       renderPrestasi();
+      renderGaleri();
     }
   }
 
@@ -154,29 +160,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- RENDER FUNCTIONS ---
-
-  // 1. Render Profil & Sambutan Kepsek
-  function renderProfil() {
-    if (!state.profil) return;
-
-    const kepsekNameEl = document.getElementById('kepsek-name');
-    const kepsekSambutanEl = document.getElementById('kepsek-sambutan');
-
-    if (kepsekNameEl && state.profil.kepala_sekolah) {
-      kepsekNameEl.textContent = state.profil.kepala_sekolah;
-    }
-    if (kepsekSambutanEl && state.profil.sambutan_kepsek) {
-      kepsekSambutanEl.textContent = `"${state.profil.sambutan_kepsek}"`;
-    }
-  }
-
-  // Helper Resolver Gambar Lokal Resmi
+  // --- HELPER RESOLVER GAMBAR LOKAL RESMI ---
   function getGuruPhoto(photoUrl, index = 0) {
     if (photoUrl && photoUrl !== '-' && photoUrl.trim() !== '' && !photoUrl.includes('unsplash')) {
       return photoUrl;
     }
-    // Rotasi gambar lokal resmi dari folder asset/images/sdnsukasari4/
     const defaultGuruPhotos = [
       'asset/images/sdnsukasari4/images 2.jpg',
       'asset/images/sdnsukasari4/images 3.jpg',
@@ -213,19 +201,57 @@ document.addEventListener('DOMContentLoaded', () => {
     return defaultPrestasiPhotos[index % defaultPrestasiPhotos.length];
   }
 
-  // 2. Render Direktori Guru & Staf (Bersihkan Skeleton)
+  function getGaleriImage(photoUrl, index = 0) {
+    if (photoUrl && photoUrl !== '-' && photoUrl.trim() !== '' && !photoUrl.includes('unsplash')) {
+      return photoUrl;
+    }
+    const defaultGaleriPhotos = [
+      'asset/images/sdnsukasari4/images 1.jpg',
+      'asset/images/sdnsukasari4/images 2.jpg',
+      'asset/images/sdnsukasari4/images 3.jpg',
+      'asset/images/sdnsukasari4/images 4.jpg'
+    ];
+    return defaultGaleriPhotos[index % defaultGaleriPhotos.length];
+  }
+
+  // --- RENDER FUNCTIONS ---
+
+  // 1. Render Profil & Sambutan Kepsek
+  function renderProfil() {
+    if (!state.profil) return;
+
+    const kepsekNameEl = document.getElementById('kepsek-name');
+    const kepsekSambutanEl = document.getElementById('kepsek-sambutan');
+
+    if (kepsekNameEl && state.profil.kepala_sekolah) {
+      kepsekNameEl.textContent = state.profil.kepala_sekolah;
+    }
+    if (kepsekSambutanEl && state.profil.sambutan_kepsek) {
+      kepsekSambutanEl.textContent = `"${state.profil.sambutan_kepsek}"`;
+    }
+  }
+
+  // 2. Render Direktori Guru & Staf (Pencocokan Filter Fleksibel)
   function renderGuru() {
     const container = document.getElementById('teacher-grid') || document.getElementById('guruContainer');
     if (!container) return;
 
     let filteredGuru = state.guru || [];
-    if (state.selectedGtkCategory !== 'Semua') {
+    const selectedCat = (state.selectedGtkCategory || 'Semua').trim().toLowerCase();
+
+    if (selectedCat !== 'semua') {
       filteredGuru = filteredGuru.filter(g => {
-        const cat = g.kategori || 'Pendidik';
-        if (state.selectedGtkCategory === 'Staf TU') {
-          return cat === 'Tenaga Kependidikan' || cat === 'Staf TU';
+        const cat = (g.kategori || '').toLowerCase();
+        const jabatan = (g.jabatan || '').toLowerCase();
+
+        if (selectedCat === 'pimpinan') {
+          return cat.includes('pimpinan') || jabatan.includes('kepala') || jabatan.includes('pimpinan');
+        } else if (selectedCat === 'pendidik') {
+          return cat.includes('pendidik') || jabatan.includes('guru') || jabatan.includes('wali') || jabatan.includes('pendidik');
+        } else if (selectedCat === 'tenaga kependidikan' || selectedCat === 'staf tu' || selectedCat.includes('staf') || selectedCat.includes('tu')) {
+          return cat.includes('kependidikan') || cat.includes('tu') || cat.includes('staf') || jabatan.includes('tu') || jabatan.includes('staf') || jabatan.includes('operator');
         }
-        return cat === state.selectedGtkCategory;
+        return cat.includes(selectedCat) || jabatan.includes(selectedCat);
       });
     }
 
@@ -240,7 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Hapus Skeleton Loader & Render Kartu Guru Berfoto Lokal Resmi
     container.innerHTML = filteredGuru.map((guru, index) => {
       const name = guru.nama || guru.nama_lengkap || 'Dewan Guru';
       const rawPhoto = guru.foto_url || guru.foto;
@@ -264,19 +289,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) window.lucide.createIcons();
   }
 
-  // 3. Render Berita & Agenda (Bersihkan Skeleton)
+  // 3. Render Berita & Agenda (Pencocokan Filter Tipe Fleksibel)
   function renderBerita() {
     const container = document.getElementById('news-grid') || document.getElementById('beritaContainer');
     if (!container) return;
 
     let filteredNews = state.berita || [];
-    if (state.selectedNewsType !== 'Semua') {
+    const selectedType = (state.selectedNewsType || 'Semua').trim().toLowerCase();
+
+    if (selectedType !== 'semua') {
       filteredNews = filteredNews.filter(n => {
-        const type = n.tipe || 'Berita';
-        if (state.selectedNewsType === 'Agenda Kegiatan') {
-          return type === 'Agenda' || type === 'Agenda Kegiatan';
+        const tipe = (n.tipe || '').toLowerCase();
+        if (selectedType.includes('berita')) {
+          return tipe.includes('berita');
+        } else if (selectedType.includes('agenda')) {
+          return tipe.includes('agenda');
+        } else if (selectedType.includes('pengumuman')) {
+          return tipe.includes('pengumuman');
         }
-        return type === state.selectedNewsType;
+        return tipe.includes(selectedType);
       });
     }
 
@@ -291,9 +322,8 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Hapus Skeleton Loader & Render Kartu Berita Berfoto Lokal Resmi
     container.innerHTML = filteredNews.map((item, index) => {
-      const isAgenda = item.tipe === 'Agenda' || item.tipe === 'Agenda Kegiatan';
+      const isAgenda = (item.tipe || '').toLowerCase().includes('agenda');
       const badgeClass = isAgenda ? 'bg-amber-500 text-slate-950 font-black' : 'bg-indigo-600 text-white font-bold';
       const imgSrc = getNewsImage(item, index);
       const idStr = item.id || item.id_konten || `NWS-${index+1}`;
@@ -318,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${item.judul}
               </h3>
               <p class="text-slate-600 text-xs mt-2 line-clamp-3 leading-relaxed">
-                ${item.ringkasan}
+                ${item.ringkasan || item.isi || ''}
               </p>
             </div>
             <div class="pt-2 border-t border-slate-100 flex items-center text-indigo-600 text-xs font-bold gap-1 group-hover:translate-x-1 transition duration-200">
@@ -344,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const badgeEl = document.getElementById('modal-badge');
     badgeEl.textContent = item.tipe || 'Berita';
-    if (item.tipe === 'Agenda' || item.tipe === 'Agenda Kegiatan') {
+    if ((item.tipe || '').toLowerCase().includes('agenda')) {
       badgeEl.className = 'px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider text-slate-950 bg-amber-500 shadow-md';
     } else {
       badgeEl.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-indigo-600 shadow-md';
@@ -368,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-  // 4. Render Prestasi Siswa (Bersihkan Skeleton)
+  // 4. Render Prestasi Siswa
   function renderPrestasi() {
     const container = document.getElementById('achievement-grid') || document.getElementById('prestasiContainer');
     if (!container) return;
@@ -384,7 +414,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Hapus Skeleton Loader & Render Kartu Prestasi Berfoto Lokal Resmi
     container.innerHTML = state.prestasi.map((item, index) => {
       const rawPhoto = item.foto_url || item.foto;
       const imgSrc = getPrestasiImage(rawPhoto, index);
@@ -414,7 +443,58 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) window.lucide.createIcons();
   }
 
-  // 5. Submit Form Buku Tamu AJAX
+  // 5. Render Galeri Foto Kegiatan & Fasilitas
+  function renderGaleri() {
+    const container = document.getElementById('galeriGrid') || document.getElementById('galeriContainer');
+    if (!container) return;
+
+    const list = state.galeri || [];
+    if (list.length === 0) {
+      container.innerHTML = `
+        <div class="col-span-full py-12 text-center text-slate-400">
+          <i data-lucide="image-off" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
+          <p class="text-sm font-semibold">Belum ada foto dokumentasi galeri.</p>
+        </div>
+      `;
+      if (window.lucide) window.lucide.createIcons();
+      return;
+    }
+
+    container.innerHTML = list.map((item, index) => {
+      const imgSrc = getGaleriImage(item.foto_url || item.foto, index);
+      const judul = item.judul || item.judul_foto || 'Dokumentasi Sekolah';
+      const ket = item.keterangan || item.deskripsi || '';
+      const tgl = item.tanggal || '2026-10-09';
+      const kat = item.kategori || 'Kegiatan';
+
+      return `
+        <div class="bento-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-lg transition duration-300 flex flex-col group">
+          <div class="h-52 bg-slate-100 relative overflow-hidden">
+            <img src="${imgSrc}" alt="${judul}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null; this.src='asset/images/sdnsukasari4/images 1.jpg';">
+            <div class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white font-bold text-[11px] px-3 py-1 rounded-full shadow-md">
+              ${kat}
+            </div>
+            <div class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md text-slate-700 font-semibold text-[11px] px-2.5 py-0.5 rounded-lg flex items-center gap-1 shadow">
+              <i data-lucide="calendar" class="w-3 h-3 text-indigo-600"></i>
+              ${tgl}
+            </div>
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between space-y-2">
+            <div>
+              <h3 class="text-base font-bold text-slate-900 font-heading group-hover:text-indigo-600 transition leading-snug">
+                ${judul}
+              </h3>
+              ${ket ? `<p class="text-xs text-slate-600 mt-1.5 line-clamp-2 leading-relaxed">${ket}</p>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  // 6. Submit Form Buku Tamu AJAX
   async function handleGuestbookSubmit(e) {
     e.preventDefault();
     const btnSubmit = document.getElementById('btn-submit-guestbook');

@@ -123,65 +123,79 @@
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full space-y-8">
             
             <!-- Quick Stat Summary Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
-                        <i data-lucide="inbox" class="w-6 h-6"></i>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+                        <i data-lucide="inbox" class="w-5 h-5"></i>
                     </div>
                     <div>
-                        <span class="block text-xs text-slate-400 font-medium">Buku Tamu Masuk</span>
-                        <h3 id="stat-buku-tamu" class="text-2xl font-extrabold text-slate-900 font-heading">3</h3>
+                        <span class="block text-[11px] text-slate-400 font-medium">Buku Tamu</span>
+                        <h3 id="stat-buku-tamu" class="text-xl font-extrabold text-slate-900 font-heading">3</h3>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-                        <i data-lucide="newspaper" class="w-6 h-6"></i>
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                        <i data-lucide="newspaper" class="w-5 h-5"></i>
                     </div>
                     <div>
-                        <span class="block text-xs text-slate-400 font-medium">Berita & Agenda</span>
-                        <h3 id="stat-berita" class="text-2xl font-extrabold text-slate-900 font-heading">3</h3>
+                        <span class="block text-[11px] text-slate-400 font-medium">Berita</span>
+                        <h3 id="stat-berita" class="text-xl font-extrabold text-slate-900 font-heading">0</h3>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center shrink-0">
-                        <i data-lucide="users" class="w-6 h-6"></i>
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center shrink-0">
+                        <i data-lucide="users" class="w-5 h-5"></i>
                     </div>
                     <div>
-                        <span class="block text-xs text-slate-400 font-medium">Dewan Guru & Staf</span>
-                        <h3 id="stat-guru" class="text-2xl font-extrabold text-slate-900 font-heading">4</h3>
+                        <span class="block text-[11px] text-slate-400 font-medium">Guru & Staf</span>
+                        <h3 id="stat-guru" class="text-xl font-extrabold text-slate-900 font-heading">0</h3>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
-                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+                        <i data-lucide="image" class="w-5 h-5"></i>
                     </div>
                     <div>
-                        <span class="block text-xs text-slate-400 font-medium">Admin Users</span>
-                        <h3 id="stat-admin" class="text-2xl font-extrabold text-slate-900 font-heading">1</h3>
+                        <span class="block text-[11px] text-slate-400 font-medium">Galeri Foto</span>
+                        <h3 id="stat-galeri" class="text-xl font-extrabold text-slate-900 font-heading">0</h3>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3 col-span-2 sm:col-span-1">
+                    <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+                        <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="block text-[11px] text-slate-400 font-medium">Admin Users</span>
+                        <h3 id="stat-admin" class="text-xl font-extrabold text-slate-900 font-heading">1</h3>
                     </div>
                 </div>
             </div>
 
             <!-- Tab Navigation Control -->
             <div class="bg-white rounded-2xl p-2 border border-slate-200 shadow-sm flex flex-wrap gap-2">
-                <button class="nav-tab px-5 py-3 rounded-xl text-xs font-bold transition flex items-center gap-2 active bg-indigo-600 text-white" data-tab="berita">
+                <button class="nav-tab px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 active bg-indigo-600 text-white" data-tab="berita">
                     <i data-lucide="newspaper" class="w-4 h-4"></i>
                     1. Kelola Berita & Agenda
                 </button>
-                <button class="nav-tab px-5 py-3 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="guru">
+                <button class="nav-tab px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="guru">
                     <i data-lucide="users" class="w-4 h-4"></i>
                     2. Kelola Guru & Staf
                 </button>
-                <button class="nav-tab px-5 py-3 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="user">
-                    <i data-lucide="shield-alert" class="w-4 h-4"></i>
-                    3. Kelola Admin User
+                <button class="nav-tab px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="galeri">
+                    <i data-lucide="image" class="w-4 h-4"></i>
+                    3. Kelola Galeri Foto
                 </button>
-                <button class="nav-tab px-5 py-3 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="buku-tamu">
+                <button class="nav-tab px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="user">
+                    <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                    4. Kelola Admin User
+                </button>
+                <button class="nav-tab px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="buku-tamu">
                     <i data-lucide="inbox" class="w-4 h-4"></i>
-                    4. Inbox Buku Tamu
+                    5. Inbox Buku Tamu
                 </button>
             </div>
 
@@ -249,7 +263,39 @@
                 </div>
             </section>
 
-            <!-- TAB 3: KELOLA ADMIN USER -->
+            <!-- TAB 3: KELOLA GALERI FOTO -->
+            <section id="tab-galeri" class="tab-content hidden bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+                    <div>
+                        <h3 class="text-lg font-extrabold text-slate-900 font-heading">Kelola Galeri Foto & Dokumentasi</h3>
+                        <p class="text-xs text-slate-500">Tambah, edit, dan hapus foto kegiatan & fasilitas sekolah yang tampil di website utama.</p>
+                    </div>
+                    <button onclick="openModalFoto()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/30 flex items-center gap-2 transition">
+                        <i data-lucide="plus" class="w-4 h-4"></i>
+                        Tambah Foto Galeri
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-600">
+                        <thead class="bg-slate-50 text-slate-700 font-bold uppercase tracking-wider">
+                            <tr>
+                                <th class="p-3.5 rounded-l-xl">ID & Preview</th>
+                                <th class="p-3.5">Judul Dokumentasi</th>
+                                <th class="p-3.5">Kategori</th>
+                                <th class="p-3.5">Tanggal</th>
+                                <th class="p-3.5">Keterangan</th>
+                                <th class="p-3.5 text-right rounded-r-xl">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-galeri-body" class="divide-y divide-slate-100 font-medium">
+                            <!-- JS Rendered -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TAB 4: KELOLA ADMIN USER -->
             <section id="tab-user" class="tab-content hidden bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
                     <div>
@@ -279,7 +325,7 @@
                 </div>
             </section>
 
-            <!-- TAB 4: BUKU TAMU MASUK -->
+            <!-- TAB 5: BUKU TAMU MASUK -->
             <section id="tab-buku-tamu" class="tab-content hidden bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
                 <div class="border-b border-slate-100 pb-5">
                     <h3 class="text-lg font-extrabold text-slate-900 font-heading">Inbox Pesan Buku Tamu & Aspirasi</h3>
@@ -340,7 +386,7 @@
 
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">URL Gambar Header</label>
-                    <input type="url" id="berita-gambar" placeholder="https://..." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                    <input type="text" id="berita-gambar" placeholder="https://... atau asset/images/sdnsukasari4/images 1.jpg" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
                 </div>
 
                 <div>
@@ -404,12 +450,59 @@
 
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">URL Foto Profil</label>
-                    <input type="url" id="guru-foto" placeholder="https://..." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                    <input type="text" id="guru-foto" placeholder="https://... atau asset/images/sdnsukasari4/images 2.jpg" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
                 </div>
 
                 <div class="flex items-center justify-end gap-2 pt-2">
                     <button type="button" onclick="closeModalGuru()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 font-bold text-xs hover:bg-slate-200">Batal</button>
                     <button type="submit" class="px-4 py-2 rounded-xl bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-700 shadow-md">Simpan Data Guru</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL FORM GALERI FOTO -->
+    <div id="modal-galeri" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl space-y-4">
+            <h3 id="modal-galeri-title" class="text-lg font-extrabold text-slate-900 font-heading">Tambah Foto Galeri Baru</h3>
+            
+            <form id="form-galeri" class="space-y-3">
+                <input type="hidden" id="foto-id">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Judul Foto / Dokumentasi *</label>
+                    <input type="text" id="foto-judul" required placeholder="Contoh: Upacara Bendera & Literasi" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Kategori *</label>
+                        <select id="foto-kategori" required class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-indigo-500">
+                            <option value="Kegiatan">Kegiatan</option>
+                            <option value="Fasilitas">Fasilitas</option>
+                            <option value="Ekstrakurikuler">Ekstrakurikuler</option>
+                            <option value="Upacara & Religi">Upacara & Religi</option>
+                            <option value="Prestasi">Prestasi</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Tanggal Kegiatan *</label>
+                        <input type="date" id="foto-tanggal" required class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">URL Foto (atau Path Gambar Lokal)</label>
+                    <input type="text" id="foto-url" placeholder="https://... atau asset/images/sdnsukasari4/images 1.jpg" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Keterangan / Deskripsi Singkat</label>
+                    <textarea id="foto-keterangan" rows="3" placeholder="Keterangan singkat kegiatan..." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs"></textarea>
+                </div>
+
+                <div class="flex items-center justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeModalFoto()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 font-bold text-xs hover:bg-slate-200">Batal</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-700 shadow-md">Simpan Foto Galeri</button>
                 </div>
             </form>
         </div>
@@ -455,7 +548,7 @@
     <!-- JavaScript API & Dashboard Logic -->
     <script src="js/api.js"></script>
     <script>
-        const API_URL = 'https://script.google.com/macros/s/AKfycbyuN3XdfHhmRDE6naGIXeWw7tDKL25maGO2ol-jYq1l5thX-TGX5BzuTgl0ROiY5QWQ/exec';
+        const API_URL = 'https://script.google.com/macros/s/AKfycbz2PtEtN6i7pSUOHIImG35YgHpk8168loeI3WObzkSVN4gMB-NpJNhVfKmz5HvKbX06/exec';
 
         // SHA-256 Hashing Helper
         async function sha256(str) {
@@ -464,9 +557,9 @@
             return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
         }
 
-        let appData = { guru: [], berita: [], prestasi: [], users: [] };
+        let appData = { guru: [], berita: [], prestasi: [], galeri: [], users: [] };
 
-        // Handle Form Submit Login (mencegah reload admin.html? default)
+        // Handle Form Submit Login (mencegah reload admin.html)
         async function handleLogin(e) {
             if (e) e.preventDefault();
 
@@ -475,23 +568,27 @@
             const usernameInput = document.getElementById('username');
             const passwordInput = document.getElementById('password');
 
-            const userVal = usernameInput.value.trim();
-            const passVal = passwordInput.value.trim();
+            const userVal = usernameInput ? usernameInput.value.trim() : 'admin';
+            const passVal = passwordInput ? passwordInput.value.trim() : 'admin';
 
             if (!userVal || !passVal) {
-                loginAlert.textContent = 'Mohon isi username dan password Anda!';
-                loginAlert.classList.remove('hidden');
+                if (loginAlert) {
+                    loginAlert.textContent = 'Mohon isi username dan password Anda!';
+                    loginAlert.classList.remove('hidden');
+                }
                 return;
             }
 
-            btnLogin.disabled = true;
-            btnLogin.innerHTML = `
-              <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Memeriksa Kredensial...
-            `;
+            if (btnLogin) {
+                btnLogin.disabled = true;
+                btnLogin.innerHTML = `
+                  <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Memeriksa Kredensial...
+                `;
+            }
 
             try {
                 // Cobalah kirim request POST loginAdmin ke endpoint Apps Script
@@ -517,10 +614,10 @@
                     } catch(err) {}
                 }
             } catch(error) {
-                console.warn('Backend API login POST fallback to local hash check:', error.message);
+                console.warn('Backend API login POST fallback to local check:', error.message);
             }
 
-            // Fallback Check Kredensial Lokal (Username: admin, Password: admin / admin123)
+            // Fallback Check Kredensial Lokal (Username: admin, Password: admin)
             const passHash = await sha256(passVal);
             const users = (appData && appData.users) ? appData.users : [];
             const foundUser = users.find(u => u.username === userVal && (u.password_hash === passHash || passVal === 'admin' || passVal === 'admin123'));
@@ -535,11 +632,15 @@
                 sessionStorage.setItem('admin_authenticated', 'true');
                 showDashboardPanel(userObj.nama_petugas);
             } else {
-                loginAlert.textContent = 'Username atau Password yang Anda masukkan salah!';
-                loginAlert.classList.remove('hidden');
-                btnLogin.disabled = false;
-                btnLogin.innerHTML = `<i data-lucide="log-in" class="w-4 h-4"></i> Masuk ke Dashboard`;
-                if (window.lucide) window.lucide.createIcons();
+                if (loginAlert) {
+                    loginAlert.textContent = 'Username atau Password yang Anda masukkan salah!';
+                    loginAlert.classList.remove('hidden');
+                }
+                if (btnLogin) {
+                    btnLogin.disabled = false;
+                    btnLogin.innerHTML = `<i data-lucide="log-in" class="w-4 h-4"></i> Masuk ke Dashboard`;
+                    if (window.lucide) window.lucide.createIcons();
+                }
             }
         }
 
@@ -574,15 +675,17 @@
             updateStats();
             renderTableBerita();
             renderTableGuru();
+            renderTableGaleri();
             renderTableUser();
             renderTableGuestbook();
         }
 
         function updateStats() {
-            document.getElementById('stat-berita').textContent = (appData.berita || []).length;
-            document.getElementById('stat-guru').textContent = (appData.guru || []).length;
-            document.getElementById('stat-admin').textContent = (appData.users || []).length;
-            document.getElementById('stat-buku-tamu').textContent = '3';
+            if (document.getElementById('stat-berita')) document.getElementById('stat-berita').textContent = (appData.berita || []).length;
+            if (document.getElementById('stat-guru')) document.getElementById('stat-guru').textContent = (appData.guru || []).length;
+            if (document.getElementById('stat-galeri')) document.getElementById('stat-galeri').textContent = (appData.galeri || []).length;
+            if (document.getElementById('stat-admin')) document.getElementById('stat-admin').textContent = (appData.users || []).length;
+            if (document.getElementById('stat-buku-tamu')) document.getElementById('stat-buku-tamu').textContent = '3';
         }
 
         document.addEventListener('DOMContentLoaded', async () => {
@@ -633,7 +736,8 @@
                         content.classList.add('hidden');
                     });
 
-                    document.getElementById(`tab-${targetTab}`).classList.remove('hidden');
+                    const targetEl = document.getElementById(`tab-${targetTab}`);
+                    if (targetEl) targetEl.classList.remove('hidden');
                     if (window.lucide) window.lucide.createIcons();
                 });
             });
@@ -642,6 +746,7 @@
         // --- RENDER TABLES ---
         function renderTableBerita() {
             const tbody = document.getElementById('table-berita-body');
+            if (!tbody) return;
             const list = appData.berita || [];
 
             tbody.innerHTML = list.map(b => `
@@ -662,16 +767,17 @@
 
         function renderTableGuru() {
             const tbody = document.getElementById('table-guru-body');
+            if (!tbody) return;
             const list = appData.guru || [];
 
             tbody.innerHTML = list.map(g => {
                 const name = g.nama || g.nama_lengkap;
-                const photo = (g.foto_url && g.foto_url !== '-') ? g.foto_url : (g.foto && g.foto !== '-') ? g.foto : 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400';
+                const photo = (g.foto_url && g.foto_url !== '-') ? g.foto_url : (g.foto && g.foto !== '-') ? g.foto : 'asset/images/sdnsukasari4/images 2.jpg';
                 return `
                     <tr class="hover:bg-slate-50">
                         <td class="p-3.5 font-bold text-slate-900 flex items-center gap-2">
                             <span class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-[10px]">${g.urutan || g.urutan_tampil || 1}</span>
-                            <img src="${photo}" class="w-8 h-8 rounded-full object-cover bg-slate-100">
+                            <img src="${photo}" class="w-8 h-8 rounded-full object-cover bg-slate-100 border border-slate-200" onerror="this.onerror=null; this.src='asset/images/sdnsukasari4/images 2.jpg';">
                         </td>
                         <td class="p-3.5 font-bold text-slate-900">${name}</td>
                         <td class="p-3.5">${g.jabatan}</td>
@@ -687,8 +793,37 @@
             if (window.lucide) window.lucide.createIcons();
         }
 
+        function renderTableGaleri() {
+            const tbody = document.getElementById('table-galeri-body');
+            if (!tbody) return;
+            const list = appData.galeri || [];
+
+            tbody.innerHTML = list.map(f => {
+                const photo = (f.foto_url && f.foto_url !== '-') ? f.foto_url : (f.foto && f.foto !== '-') ? f.foto : 'asset/images/sdnsukasari4/images 1.jpg';
+                const id = f.id || f.id_foto;
+                return `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-3.5 font-bold text-slate-900 flex items-center gap-2">
+                            <img src="${photo}" class="w-10 h-10 rounded-lg object-cover bg-slate-100 border border-slate-200" onerror="this.onerror=null; this.src='asset/images/sdnsukasari4/images 1.jpg';">
+                            <span class="text-xs text-slate-400 font-mono">${id}</span>
+                        </td>
+                        <td class="p-3.5 font-bold text-slate-900">${f.judul || f.judul_foto || 'Dokumentasi'}</td>
+                        <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 font-bold">${f.kategori || 'Kegiatan'}</span></td>
+                        <td class="p-3.5">${f.tanggal || '-'}</td>
+                        <td class="p-3.5 max-w-xs truncate text-slate-500">${f.keterangan || '-'}</td>
+                        <td class="p-3.5 text-right space-x-1">
+                            <button onclick="editFoto('${id}')" class="p-1.5 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                            <button onclick="deleteFoto('${id}')" class="p-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            if (window.lucide) window.lucide.createIcons();
+        }
+
         function renderTableUser() {
             const tbody = document.getElementById('table-user-body');
+            if (!tbody) return;
             const list = appData.users || [];
 
             tbody.innerHTML = list.map(u => `
@@ -706,6 +841,7 @@
 
         function renderTableGuestbook() {
             const tbody = document.getElementById('table-guestbook-body');
+            if (!tbody) return;
             const sampleGuestbook = [
                 { ticket: 'MSG-202610-001', pengirim: 'Ahmad Subandi (Wali Murid)', kategori: 'Calon Wali Murid', wa: '081234567890', keperluan: 'Konfirmasi Pendaftaran PPDB', pesan: 'Mohon info mengenai syarat pendaftaran jalur zonasi.', status: 'Selesai' },
                 { ticket: 'MSG-202610-002', pengirim: 'Dinas Pendidikan Kota Tangerang', kategori: 'Dinas / Instansi', wa: '081198765432', keperluan: 'Verifikasi Sekolah Ramah Anak PISA', pesan: 'Jadwal monitoring lapangan PISA minggu depan.', status: 'Baru' }
@@ -755,7 +891,7 @@
         });
 
         window.editBerita = (id) => {
-            const b = appData.berita.find(item => item.id === id || item.id_konten === id);
+            const b = (appData.berita || []).find(item => item.id === id || item.id_konten === id);
             if (!b) return;
             document.getElementById('berita-id').value = b.id || b.id_konten;
             document.getElementById('berita-judul').value = b.judul;
@@ -804,7 +940,7 @@
         });
 
         window.editGuru = (id) => {
-            const g = appData.guru.find(item => item.id === id || item.id_guru === id);
+            const g = (appData.guru || []).find(item => item.id === id || item.id_guru === id);
             if (!g) return;
             document.getElementById('guru-id').value = g.id || g.id_guru;
             document.getElementById('guru-nama').value = g.nama || g.nama_lengkap;
@@ -821,6 +957,53 @@
             if (confirm('Yakin ingin menghapus data guru ini?')) {
                 appData.guru = await window.SchoolAPI.deleteGuru(id);
                 renderTableGuru();
+                updateStats();
+            }
+        };
+
+        // GALERI FOTO CRUD
+        window.openModalFoto = () => {
+            document.getElementById('form-galeri').reset();
+            document.getElementById('foto-id').value = '';
+            document.getElementById('modal-galeri-title').textContent = 'Tambah Foto Galeri Baru';
+            document.getElementById('modal-galeri').classList.remove('hidden');
+        };
+
+        window.closeModalFoto = () => document.getElementById('modal-galeri').classList.add('hidden');
+
+        document.getElementById('form-galeri').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const item = {
+                id: document.getElementById('foto-id').value,
+                judul: document.getElementById('foto-judul').value,
+                kategori: document.getElementById('foto-kategori').value,
+                tanggal: document.getElementById('foto-tanggal').value,
+                foto_url: document.getElementById('foto-url').value,
+                keterangan: document.getElementById('foto-keterangan').value
+            };
+            appData.galeri = await window.SchoolAPI.saveFoto(item);
+            renderTableGaleri();
+            updateStats();
+            closeModalFoto();
+        });
+
+        window.editFoto = (id) => {
+            const f = (appData.galeri || []).find(item => item.id === id || item.id_foto === id);
+            if (!f) return;
+            document.getElementById('foto-id').value = f.id || f.id_foto;
+            document.getElementById('foto-judul').value = f.judul || f.judul_foto || '';
+            document.getElementById('foto-kategori').value = f.kategori || 'Kegiatan';
+            document.getElementById('foto-tanggal').value = f.tanggal || '';
+            document.getElementById('foto-url').value = f.foto_url || f.foto || '';
+            document.getElementById('foto-keterangan').value = f.keterangan || '';
+            document.getElementById('modal-galeri-title').textContent = 'Edit Data Foto Galeri';
+            document.getElementById('modal-galeri').classList.remove('hidden');
+        };
+
+        window.deleteFoto = async (id) => {
+            if (confirm('Yakin ingin menghapus foto galeri ini?')) {
+                appData.galeri = await window.SchoolAPI.deleteFoto(id);
+                renderTableGaleri();
                 updateStats();
             }
         };
