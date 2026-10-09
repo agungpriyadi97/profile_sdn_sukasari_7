@@ -82,7 +82,21 @@ const FALLBACK_DATA = {
     {
       id: "GTK-009",
       nama: "Hendra Wijaya, A.Md.",
-      jabatan: "Kepala Tata Usaha & Operator Sekolah",
+      jabatan: "Kepala Tata Usaha (TU)",
+      kategori: "Tenaga Kependidikan",
+      foto_url: "-"
+    },
+    {
+      id: "GTK-010",
+      nama: "Agung Priyadi, S.Kom.",
+      jabatan: "Operator Sekolah / Operator DAPODIK & IT",
+      kategori: "Tenaga Kependidikan",
+      foto_url: "-"
+    },
+    {
+      id: "GTK-011",
+      nama: "Maya Indriani, A.Md.",
+      jabatan: "Staf Administrasi & Surat Menurat TU",
       kategori: "Tenaga Kependidikan",
       foto_url: "-"
     }
