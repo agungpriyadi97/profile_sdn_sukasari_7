@@ -2,11 +2,11 @@
  * js/api.js
  * Modul pemanggilan API ke Google Apps Script backend SDN Sukasari 4 Kota Tangerang.
  * Endpoint API Terhubung Real-Time dengan Database Google Sheets:
- * https://script.google.com/macros/s/AKfycbx2P3NOiiwku-tg6ppFfdRX-XNy6F0nUX132GCGiCo_rSAN9Z2sRu64-dupG4whb7Fg/exec
+ * https://script.google.com/macros/s/AKfycbyuN3XdfHhmRDE6naGIXeWw7tDKL25maGO2ol-jYq1l5thX-TGX5BzuTgl0ROiY5QWQ/exec
  */
 
 // Live Endpoint Web App Google Apps Script
-const GAS_API_URL = window.GAS_API_URL || 'https://script.google.com/macros/s/AKfycbx2P3NOiiwku-tg6ppFfdRX-XNy6F0nUX132GCGiCo_rSAN9Z2sRu64-dupG4whb7Fg/exec';
+const GAS_API_URL = window.GAS_API_URL || 'https://script.google.com/macros/s/AKfycbyuN3XdfHhmRDE6naGIXeWw7tDKL25maGO2ol-jYq1l5thX-TGX5BzuTgl0ROiY5QWQ/exec';
 
 const API_CONFIG = {
   ENDPOINT: GAS_API_URL,
