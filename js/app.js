@@ -1,7 +1,9 @@
 /**
  * js/app.js
- * Logika interaktivitas UI publik, rendering data dinamis dari SchoolAPI,
- * penanganan modal detail berita, filter kategori GTK & Berita, dan validasi AJAX form buku tamu.
+ * Logika interaktivitas UI publik SDN Sukasari 4 Kota Tangerang.
+ * Rendering data dinamis dari SchoolAPI (GET getPublicData),
+ * pembersihan skeleton loader, fallback gambar nyata (Unsplash & Lokal),
+ * penanganan modal detail berita, filter kategori GTK & Berita, dan validasi form buku tamu.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,38 +17,39 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedNewsType: 'Semua'
   };
 
-  // DOM Elements
+  // DOM Elements (Mendukung ID lama & baru)
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileOverlay = document.getElementById('mobile-menu-overlay');
   const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
   const mobileLinks = document.querySelectorAll('.mobile-link');
-  const teacherGrid = document.getElementById('teacher-grid');
-  const newsGrid = document.getElementById('news-grid');
-  const achievementGrid = document.getElementById('achievement-grid');
+  
+  const teacherGrid = document.getElementById('teacher-grid') || document.getElementById('guruContainer');
+  const newsGrid = document.getElementById('news-grid') || document.getElementById('beritaContainer');
+  const achievementGrid = document.getElementById('achievement-grid') || document.getElementById('prestasiContainer');
+  
   const guestbookForm = document.getElementById('guestbook-form');
   const formAlert = document.getElementById('form-alert');
   const newsModal = document.getElementById('news-modal');
   const closeNewsModalBtn = document.getElementById('close-news-modal');
 
-  // Inisialisasi Aplikasi
+  // Inisialisasi Utama Aplikasi
   initApp();
 
   async function initApp() {
     setupEventListeners();
 
-    // Re-create icons untuk static HTML
     if (window.lucide) {
       window.lucide.createIcons();
     }
 
-    // Load Data dari API / Fallback
+    // Load Data dari API / Graceful Fallback
     try {
       const publicData = await window.SchoolAPI.getPublicData();
-      state.profil = publicData.profil;
-      state.guru = publicData.guru;
-      state.berita = publicData.berita;
-      state.prestasi = publicData.prestasi;
+      state.profil = publicData.profil || {};
+      state.guru = publicData.guru || [];
+      state.berita = publicData.berita || [];
+      state.prestasi = publicData.prestasi || [];
 
       renderProfil();
       renderGuru();
@@ -54,12 +57,20 @@ document.addEventListener('DOMContentLoaded', () => {
       renderPrestasi();
     } catch (error) {
       console.error('Terjadi kesalahan saat memuat data aplikasi:', error);
+      loadFallback();
     }
+  }
+
+  function loadFallback() {
+    renderProfil();
+    renderGuru();
+    renderBerita();
+    renderPrestasi();
   }
 
   // --- EVENT LISTENERS ---
   function setupEventListeners() {
-    // Mobile Navigation Slide-Over Side Drawer Toggle (Slide dari Kanan)
+    // Mobile Drawer Toggle
     function openDrawer() {
       if (mobileMenu && mobileOverlay) {
         mobileOverlay.classList.remove('opacity-0', 'pointer-events-none');
@@ -93,15 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
     gtkTabs.forEach(tab => {
       tab.addEventListener('click', (e) => {
         gtkTabs.forEach(t => {
-          t.classList.remove('active', 'bg-brand-600', 'text-white');
+          t.classList.remove('active', 'bg-indigo-600', 'text-white', 'shadow-md');
           t.classList.add('bg-slate-100', 'text-slate-600');
         });
 
         const target = e.currentTarget;
-        target.classList.add('active', 'bg-brand-600', 'text-white');
+        target.classList.add('active', 'bg-indigo-600', 'text-white', 'shadow-md');
         target.classList.remove('bg-slate-100', 'text-slate-600');
 
-        state.selectedGtkCategory = target.getAttribute('data-category');
+        state.selectedGtkCategory = target.getAttribute('data-category') || 'Semua';
         renderGuru();
       });
     });
@@ -111,20 +122,20 @@ document.addEventListener('DOMContentLoaded', () => {
     newsTabs.forEach(tab => {
       tab.addEventListener('click', (e) => {
         newsTabs.forEach(t => {
-          t.classList.remove('active', 'bg-brand-600', 'text-white');
+          t.classList.remove('active', 'bg-indigo-600', 'text-white', 'shadow-md');
           t.classList.add('bg-white', 'text-slate-600');
         });
 
         const target = e.currentTarget;
-        target.classList.add('active', 'bg-brand-600', 'text-white');
+        target.classList.add('active', 'bg-indigo-600', 'text-white', 'shadow-md');
         target.classList.remove('bg-white', 'text-slate-600');
 
-        state.selectedNewsType = target.getAttribute('data-type');
+        state.selectedNewsType = target.getAttribute('data-type') || 'Semua';
         renderBerita();
       });
     });
 
-    // Close Modal Event Handlers
+    // Close Modal Reader
     if (closeNewsModalBtn && newsModal) {
       closeNewsModalBtn.addEventListener('click', closeModal);
       newsModal.addEventListener('click', (e) => {
@@ -137,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Guestbook Form Submit Handler
+    // Guestbook Form Handler
     if (guestbookForm) {
       guestbookForm.addEventListener('submit', handleGuestbookSubmit);
     }
@@ -160,25 +171,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Helper Fallback Avatar Generator
-  function getAvatarUrl(name, photoUrl) {
+  // Helper Real Placeholder Image Generator
+  function getGuruPhoto(name, photoUrl) {
     if (photoUrl && photoUrl !== '-' && photoUrl.trim() !== '') {
       return photoUrl;
     }
-    return `asset/images/sdnsukasari4/images 2.jpg`;
+    // Real portrait placeholder via Unsplash / Local fallback
+    return `https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400`;
   }
 
-  // 2. Render Direktori Guru & Staf
-  function renderGuru() {
-    if (!teacherGrid) return;
+  function getNewsImage(item) {
+    const url = item.gambar_url || item.gambar;
+    if (url && url !== '-' && url.trim() !== '') {
+      return url;
+    }
+    return (item.tipe === 'Agenda' || item.tipe === 'Agenda Kegiatan')
+      ? 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=800'
+      : 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=800';
+  }
 
-    let filteredGuru = state.guru;
+  function getPrestasiImage(photoUrl) {
+    if (photoUrl && photoUrl !== '-' && photoUrl.trim() !== '') {
+      return photoUrl;
+    }
+    return 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=600';
+  }
+
+  // 2. Render Direktori Guru & Staf (Bersihkan Skeleton)
+  function renderGuru() {
+    const container = document.getElementById('teacher-grid') || document.getElementById('guruContainer');
+    if (!container) return;
+
+    let filteredGuru = state.guru || [];
     if (state.selectedGtkCategory !== 'Semua') {
-      filteredGuru = state.guru.filter(g => g.kategori === state.selectedGtkCategory);
+      filteredGuru = filteredGuru.filter(g => {
+        const cat = g.kategori || 'Pendidik';
+        if (state.selectedGtkCategory === 'Staf TU') {
+          return cat === 'Tenaga Kependidikan' || cat === 'Staf TU';
+        }
+        return cat === state.selectedGtkCategory;
+      });
     }
 
     if (filteredGuru.length === 0) {
-      teacherGrid.innerHTML = `
+      container.innerHTML = `
         <div class="col-span-full py-12 text-center text-slate-400">
           <i data-lucide="user-x" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
           <p class="text-sm font-semibold">Tidak ada data guru untuk kategori ini.</p>
@@ -188,18 +224,22 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    teacherGrid.innerHTML = filteredGuru.map(guru => {
-      const avatarSrc = getAvatarUrl(guru.nama, guru.foto_url);
+    // Bersihkan Skeleton & Render Kartu Guru Real
+    container.innerHTML = filteredGuru.map(guru => {
+      const name = guru.nama || guru.nama_lengkap || 'Dewan Guru';
+      const imgSrc = getGuruPhoto(name, guru.foto_url || guru.foto);
+      const category = guru.kategori || 'Pendidik';
+
       return `
-        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition duration-300 flex flex-col items-center text-center group">
-          <div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-brand-500 to-emerald-300 mb-4 group-hover:scale-105 transition duration-300">
-            <img src="${avatarSrc}" alt="${guru.nama}" class="w-full h-full object-cover rounded-full bg-slate-100" onerror="this.src='asset/images/sdnsukasari4/images 2.jpg'">
+        <div class="bento-card bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition duration-300 flex flex-col items-center text-center group">
+          <div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-indigo-500 via-amber-400 to-emerald-400 mb-4 group-hover:scale-105 transition duration-300">
+            <img src="${imgSrc}" alt="${name}" class="w-full h-full object-cover rounded-full bg-slate-100" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400'">
           </div>
-          <span class="px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-700 text-[11px] font-bold uppercase tracking-wider mb-2">
-            ${guru.kategori || 'Pendidik'}
+          <span class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-[11px] font-extrabold uppercase tracking-wider mb-2">
+            ${category}
           </span>
-          <h3 class="text-base font-bold text-slate-900 group-hover:text-brand-600 transition">${guru.nama}</h3>
-          <p class="text-xs text-slate-500 font-medium mt-1">${guru.jabatan}</p>
+          <h3 class="text-base font-bold text-slate-900 font-heading group-hover:text-indigo-600 transition">${name}</h3>
+          <p class="text-xs text-slate-500 font-medium mt-1">${guru.jabatan || 'Tenaga Pendidik'}</p>
         </div>
       `;
     }).join('');
@@ -207,17 +247,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) window.lucide.createIcons();
   }
 
-  // 3. Render Berita & Agenda
+  // 3. Render Berita & Agenda (Bersihkan Skeleton)
   function renderBerita() {
-    if (!newsGrid) return;
+    const container = document.getElementById('news-grid') || document.getElementById('beritaContainer');
+    if (!container) return;
 
-    let filteredNews = state.berita;
+    let filteredNews = state.berita || [];
     if (state.selectedNewsType !== 'Semua') {
-      filteredNews = state.berita.filter(n => n.tipe === state.selectedNewsType);
+      filteredNews = filteredNews.filter(n => {
+        const type = n.tipe || 'Berita';
+        if (state.selectedNewsType === 'Agenda Kegiatan') {
+          return type === 'Agenda' || type === 'Agenda Kegiatan';
+        }
+        return type === state.selectedNewsType;
+      });
     }
 
     if (filteredNews.length === 0) {
-      newsGrid.innerHTML = `
+      container.innerHTML = `
         <div class="col-span-full py-12 text-center text-slate-400">
           <i data-lucide="newspaper" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
           <p class="text-sm font-semibold">Belum ada berita atau agenda pada kategori ini.</p>
@@ -227,38 +274,36 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    newsGrid.innerHTML = filteredNews.map(item => {
-      const isAgenda = item.tipe === 'Agenda';
-      const badgeClass = isAgenda ? 'bg-amber-500 text-white' : 'bg-brand-600 text-white';
-      const defaultImg = isAgenda 
-        ? 'asset/images/sdnsukasari4/images 3.jpg'
-        : 'asset/images/sdnsukasari4/images 1.jpg';
-      const imgSrc = (item.gambar_url && item.gambar_url !== '-') ? item.gambar_url : defaultImg;
+    // Bersihkan Skeleton & Render Berita Real
+    container.innerHTML = filteredNews.map(item => {
+      const isAgenda = item.tipe === 'Agenda' || item.tipe === 'Agenda Kegiatan';
+      const badgeClass = isAgenda ? 'bg-amber-500 text-slate-950 font-black' : 'bg-indigo-600 text-white font-bold';
+      const imgSrc = getNewsImage(item);
 
       return `
-        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition duration-300 flex flex-col group cursor-pointer" onclick="openNewsModal('${item.id}')">
+        <div class="bento-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-lg transition duration-300 flex flex-col group cursor-pointer" onclick="openNewsModal('${item.id || item.id_konten}')">
           <div class="h-48 overflow-hidden relative bg-slate-100">
             <img src="${imgSrc}" alt="${item.judul}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
             <div class="absolute top-3 left-3">
-              <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${badgeClass} shadow-md">
-                ${item.tipe}
+              <span class="px-3 py-1 rounded-full text-xs uppercase tracking-wider ${badgeClass} shadow-md">
+                ${item.tipe || 'Berita'}
               </span>
             </div>
           </div>
-          <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
+          <div class="p-6 flex-grow flex flex-col justify-between space-y-3">
             <div>
               <div class="text-xs text-slate-400 font-semibold mb-2 flex items-center gap-1.5">
-                <i data-lucide="calendar" class="w-3.5 h-3.5 text-brand-600"></i>
-                ${item.tanggal}
+                <i data-lucide="calendar" class="w-3.5 h-3.5 text-indigo-600"></i>
+                ${item.tanggal || item.tanggal_event || '2026-10-09'}
               </div>
-              <h3 class="text-lg font-bold text-slate-900 line-clamp-2 group-hover:text-brand-600 transition leading-snug">
+              <h3 class="text-base font-bold text-slate-900 font-heading line-clamp-2 group-hover:text-indigo-600 transition leading-snug">
                 ${item.judul}
               </h3>
               <p class="text-slate-600 text-xs mt-2 line-clamp-3 leading-relaxed">
                 ${item.ringkasan}
               </p>
             </div>
-            <div class="pt-2 border-t border-slate-100 flex items-center text-brand-600 text-xs font-bold gap-1 group-hover:translate-x-1 transition duration-200">
+            <div class="pt-2 border-t border-slate-100 flex items-center text-indigo-600 text-xs font-bold gap-1 group-hover:translate-x-1 transition duration-200">
               <span>Baca Selengkapnya</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </div>
@@ -270,27 +315,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) window.lucide.createIcons();
   }
 
-  // Modal Detail Berita
+  // Modal Detail Reader
   window.openNewsModal = function(id) {
-    const item = state.berita.find(b => b.id === id);
+    const item = (state.berita || []).find(b => (b.id === id || b.id_konten === id));
     if (!item || !newsModal) return;
 
     document.getElementById('modal-title').textContent = item.judul;
-    document.getElementById('modal-date').textContent = item.tanggal;
-    document.getElementById('modal-content').textContent = item.isi || item.ringkasan;
+    document.getElementById('modal-date').textContent = item.tanggal || item.tanggal_event || '2026-10-09';
+    document.getElementById('modal-content').textContent = item.isi || item.isi_lengkap || item.ringkasan;
     
     const badgeEl = document.getElementById('modal-badge');
-    badgeEl.textContent = item.tipe;
-    if (item.tipe === 'Agenda') {
-      badgeEl.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-amber-500 shadow-md';
+    badgeEl.textContent = item.tipe || 'Berita';
+    if (item.tipe === 'Agenda' || item.tipe === 'Agenda Kegiatan') {
+      badgeEl.className = 'px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider text-slate-950 bg-amber-500 shadow-md';
     } else {
-      badgeEl.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-brand-600 shadow-md';
+      badgeEl.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-indigo-600 shadow-md';
     }
 
-    const defaultImg = item.tipe === 'Agenda'
-      ? 'asset/images/sdnsukasari4/images 3.jpg'
-      : 'asset/images/sdnsukasari4/images 1.jpg';
-    document.getElementById('modal-image').src = (item.gambar_url && item.gambar_url !== '-') ? item.gambar_url : defaultImg;
+    document.getElementById('modal-image').src = getNewsImage(item);
 
     newsModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -303,12 +345,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-  // 4. Render Prestasi Siswa
+  // 4. Render Prestasi Siswa (Bersihkan Skeleton)
   function renderPrestasi() {
-    if (!achievementGrid) return;
+    const container = document.getElementById('achievement-grid') || document.getElementById('prestasiContainer');
+    if (!container) return;
 
     if (!state.prestasi || state.prestasi.length === 0) {
-      achievementGrid.innerHTML = `
+      container.innerHTML = `
         <div class="col-span-full py-12 text-center text-slate-400">
           <i data-lucide="award" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
           <p class="text-sm font-semibold">Belum ada data prestasi siswa.</p>
@@ -318,24 +361,26 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    achievementGrid.innerHTML = state.prestasi.map(item => {
-      const defaultImg = 'asset/images/sdnsukasari4/images 3.jpg';
-      const imgSrc = (item.foto_url && item.foto_url !== '-') ? item.foto_url : defaultImg;
+    // Bersihkan Skeleton & Render Prestasi Real
+    container.innerHTML = state.prestasi.map(item => {
+      const imgSrc = getPrestasiImage(item.foto_url || item.foto);
+      const lomba = item.lomba || item.nama_lomba || 'Lomba Prestasi';
+      const nama = item.nama || item.nama_siswa || 'Siswa Berprestasi';
 
       return `
-        <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col group">
+        <div class="bento-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition flex flex-col group">
           <div class="h-44 bg-slate-100 relative overflow-hidden">
-            <img src="${imgSrc}" alt="${item.lomba}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-            <div class="absolute top-3 right-3 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
-              <i data-lucide="trophy" class="w-3.5 h-3.5"></i>
-              ${item.peringkat}
+            <img src="${imgSrc}" alt="${lomba}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute top-3 right-3 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black text-xs px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
+              <i data-lucide="trophy" class="w-3.5 h-3.5 text-slate-950"></i>
+              ${item.peringkat || 'Juara 1'}
             </div>
           </div>
-          <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
+          <div class="p-5 flex-grow flex flex-col justify-between space-y-2">
             <div>
-              <span class="text-[11px] font-bold text-brand-600 uppercase tracking-wider block">${item.tingkat} (${item.tahun})</span>
-              <h3 class="text-sm font-bold text-slate-900 mt-1 line-clamp-2">${item.lomba}</h3>
-              <p class="text-xs text-slate-500 mt-1 font-medium">Pemenang: ${item.nama}</p>
+              <span class="text-[11px] font-bold text-indigo-600 uppercase tracking-wider block font-heading">${item.tingkat || 'Kota Tangerang'} (${item.tahun || '2026'})</span>
+              <h3 class="text-sm font-bold text-slate-900 font-heading mt-1 line-clamp-2">${lomba}</h3>
+              <p class="text-xs text-slate-500 mt-1 font-medium">Pemenang: ${nama}</p>
             </div>
           </div>
         </div>
@@ -345,13 +390,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.lucide) window.lucide.createIcons();
   }
 
-  // 5. Penanganan Submit Buku Tamu
+  // 5. Submit Form Buku Tamu AJAX
   async function handleGuestbookSubmit(e) {
     e.preventDefault();
     const btnSubmit = document.getElementById('btn-submit-guestbook');
     if (!btnSubmit) return;
 
-    // Loading State UI
     btnSubmit.disabled = true;
     btnSubmit.innerHTML = `
       <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -405,8 +449,6 @@ document.addEventListener('DOMContentLoaded', () => {
         Kirim Pesan Buku Tamu
       `;
       if (window.lucide) window.lucide.createIcons();
-      
-      // Auto Scroll to Alert
       formAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   }
