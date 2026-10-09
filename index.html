@@ -139,23 +139,63 @@
             </div>
         </div>
 
-        <!-- Mobile Drawer Navigation -->
-        <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-2 shadow-xl">
-            <a href="#beranda" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Beranda</a>
-            <a href="#profil" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Profil Sekolah</a>
-            <a href="#gtk" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Guru & Staf</a>
-            <a href="#berita" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Berita & Agenda</a>
-            <a href="#prestasi" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Prestasi Siswa</a>
-            <a href="#ppdb" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Info PPDB Kota Tangerang</a>
-            <a href="#buku-tamu" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Buku Tamu & Lokasi</a>
-            <div class="pt-2">
-                <a href="https://ppdb.tangerangkota.go.id" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center px-4 py-3 rounded-xl bg-brand-600 text-white font-bold text-center gap-2 shadow-md">
-                    <i data-lucide="external-link" class="w-5 h-5"></i>
-                    Daftar PPDB Online
-                </a>
-            </div>
         </div>
     </header>
+
+    <!-- MOBILE SIDEBAR OVERLAY & DRAWER (Slide Ke Samping) -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 transition-opacity duration-300 opacity-0 pointer-events-none lg:hidden"></div>
+    
+    <aside id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-[300px] max-w-[85vw] bg-white z-50 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
+        <!-- Sidebar Header -->
+        <div class="p-5 border-b border-slate-100 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-md">
+                    <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="text-sm font-extrabold text-slate-900 tracking-tight leading-none">SDN SUKASARI 7</h3>
+                    <span class="text-[10px] text-slate-500 font-medium">Kota Tangerang</span>
+                </div>
+            </div>
+            <button id="close-mobile-menu" type="button" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition" aria-label="Close Menu">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Sidebar Navigation Links -->
+        <div class="p-4 flex-grow overflow-y-auto space-y-1.5 text-sm font-semibold">
+            <a href="#beranda" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition">
+                <i data-lucide="home" class="w-4 h-4 text-brand-600"></i> Beranda
+            </a>
+            <a href="#profil" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition">
+                <i data-lucide="compass" class="w-4 h-4 text-brand-600"></i> Profil Sekolah
+            </a>
+            <a href="#gtk" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition">
+                <i data-lucide="users" class="w-4 h-4 text-brand-600"></i> Guru & Staf
+            </a>
+            <a href="#berita" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition">
+                <i data-lucide="newspaper" class="w-4 h-4 text-brand-600"></i> Berita & Agenda
+            </a>
+            <a href="#prestasi" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition">
+                <i data-lucide="trophy" class="w-4 h-4 text-brand-600"></i> Prestasi Siswa
+            </a>
+            <a href="#ppdb" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition">
+                <i data-lucide="file-text" class="w-4 h-4 text-brand-600"></i> Info PPDB
+            </a>
+            <a href="#buku-tamu" class="mobile-link flex items-center gap-3 px-4 py-3 rounded-xl text-slate-700 hover:bg-brand-50 hover:text-brand-600 transition">
+                <i data-lucide="message-square" class="w-4 h-4 text-brand-600"></i> Buku Tamu & Lokasi
+            </a>
+        </div>
+
+        <!-- Sidebar Footer Action -->
+        <div class="p-4 border-t border-slate-100 bg-slate-50 space-y-2">
+            <a href="https://ppdb.tangerangkota.go.id" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center px-4 py-3 rounded-xl bg-brand-600 text-white font-bold text-xs gap-2 shadow-md shadow-brand-600/30">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+                Daftar PPDB Online
+            </a>
+            <div class="text-center text-[10px] text-slate-400 font-medium">NPSN: 20606454 | Akreditasi A</div>
+        </div>
+    </aside>
 
     <main class="flex-grow">
         <!-- HERO SECTION -->

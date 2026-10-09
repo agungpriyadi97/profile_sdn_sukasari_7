@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // DOM Elements
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
+  const mobileOverlay = document.getElementById('mobile-menu-overlay');
+  const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
   const mobileLinks = document.querySelectorAll('.mobile-link');
   const teacherGrid = document.getElementById('teacher-grid');
   const newsGrid = document.getElementById('news-grid');
@@ -57,18 +59,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- EVENT LISTENERS ---
   function setupEventListeners() {
-    // Mobile Navigation Drawer Toggle
-    if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-        });
-      });
+    // Mobile Navigation Slide-Over Side Drawer Toggle (Slide dari Kanan)
+    function openDrawer() {
+      if (mobileMenu && mobileOverlay) {
+        mobileOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        mobileOverlay.classList.add('opacity-100');
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+        document.body.style.overflow = 'hidden';
+      }
     }
+
+    function closeDrawer() {
+      if (mobileMenu && mobileOverlay) {
+        mobileOverlay.classList.remove('opacity-100');
+        mobileOverlay.classList.add('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+      }
+    }
+
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openDrawer);
+    if (closeMobileMenuBtn) closeMobileMenuBtn.addEventListener('click', closeDrawer);
+    if (mobileOverlay) mobileOverlay.addEventListener('click', closeDrawer);
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
 
     // GTK Category Filter Tabs
     const gtkTabs = document.querySelectorAll('.gtk-tab');
