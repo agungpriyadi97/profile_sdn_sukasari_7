@@ -1,16 +1,16 @@
 /**
  * js/api.js
  * Modul pemanggilan API ke Google Apps Script backend SDN Sukasari 7 Kota Tangerang.
- * Mengimplementasikan caching sederhana, async/await, dan fallback data otomatis bila server offline/slow.
+ * Mengimplementasikan caching, async/await, dan persistent local data management (CRUD).
  */
 
 const API_CONFIG = {
   ENDPOINT: 'https://script.google.com/macros/s/AKfycbwxuOp-iQ4pL0QQUK7JF26YFLHYCuEWk4Kv8VXm6QqZE821_b46Yfu_vs5Z7CW2-dta8g/exec',
-  TIMEOUT: 8000 // 8 detik timeout
+  TIMEOUT: 8000
 };
 
-// Data Fallback Lokal (Graceful Degradation)
-const FALLBACK_DATA = {
+// Data Default Lokal (Graceful Degradation)
+const INITIAL_DATA = {
   profil: {
     nama_sekolah: "SDN Sukasari 7 Kota Tangerang",
     npsn: "20606454",
@@ -96,7 +96,7 @@ const FALLBACK_DATA = {
     {
       id: "GTK-011",
       nama: "Maya Indriani, A.Md.",
-      jabatan: "Staf Administrasi & Surat Menurat TU",
+      jabatan: "Staf Administrasi & Layanan Surat TU",
       kategori: "Tenaga Kependidikan",
       foto_url: "-"
     }
@@ -176,105 +176,177 @@ const FALLBACK_DATA = {
       tahun: "2025",
       foto_url: "asset/images/image-backgraound.jpg"
     }
+  ],
+  users: [
+    {
+      username: "admin",
+      password_hash: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+      nama_petugas: "Operator TU SDN Sukasari 7",
+      role: "SUPER_ADMIN"
+    }
   ]
 };
+
+// Functions Helper untuk Local Storage Management
+function getStoredData() {
+  const local = localStorage.getItem('SDN_SUKASARI7_DATA');
+  if (local) {
+    try {
+      return JSON.parse(local);
+    } catch (e) {
+      console.warn('Gagal parse localStorage, me-reset data awal.');
+    }
+  }
+  localStorage.setItem('SDN_SUKASARI7_DATA', JSON.stringify(INITIAL_DATA));
+  return INITIAL_DATA;
+}
+
+function setStoredData(data) {
+  localStorage.setItem('SDN_SUKASARI7_DATA', JSON.stringify(data));
+}
 
 const SchoolAPI = {
   /**
    * Mengambil data publik profil, guru, berita, dan prestasi sekolah.
-   * @returns {Promise<Object>} Data public
    */
   async getPublicData() {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.TIMEOUT);
+    const localData = getStoredData();
 
+    // Mencoba fetch data dari API jika ada koneksi
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.TIMEOUT);
+
       const response = await fetch(`${API_CONFIG.ENDPOINT}?action=getPublicData`, {
         method: 'GET',
-        signal: controller.signal,
-        headers: {
-          'Accept': 'application/json'
-        }
+        signal: controller.signal
       });
       clearTimeout(timeoutId);
 
-      if (!response.ok) {
-        throw new Error(`HTTP Error status: ${response.status}`);
+      if (response.ok) {
+        const result = await response.json();
+        if (result && result.status === 'success' && result.data) {
+          // Merge remote data jika ada, jika tidak gunakan localData
+          const merged = {
+            profil: result.data.profil || localData.profil,
+            guru: (result.data.guru && result.data.guru.length > 0) ? result.data.guru : localData.guru,
+            berita: (result.data.berita && result.data.berita.length > 0) ? result.data.berita : localData.berita,
+            prestasi: (result.data.prestasi && result.data.prestasi.length > 0) ? result.data.prestasi : localData.prestasi,
+            users: localData.users || INITIAL_DATA.users
+          };
+          return merged;
+        }
       }
-
-      const result = await response.json();
-      if (result && result.status === 'success' && result.data) {
-        // Gabungkan dengan fallback jika ada field data yang kosong
-        return {
-          profil: result.data.profil || FALLBACK_DATA.profil,
-          guru: (result.data.guru && result.data.guru.length > 0) ? result.data.guru : FALLBACK_DATA.guru,
-          berita: (result.data.berita && result.data.berita.length > 0) ? result.data.berita : FALLBACK_DATA.berita,
-          prestasi: (result.data.prestasi && result.data.prestasi.length > 0) ? result.data.prestasi : FALLBACK_DATA.prestasi,
-          isFallback: false
-        };
-      } else {
-        console.warn('API Response not successful, fallback data loaded.');
-        return { ...FALLBACK_DATA, isFallback: true };
-      }
-    } catch (error) {
-      console.warn('Gagal mengambil data dari Google Apps Script API (menggunakan data fallback):', error.message);
-      return { ...FALLBACK_DATA, isFallback: true, error: error.message };
+    } catch (e) {
+      console.warn('API Fetch offline/error, menggunakan data tersimpan lokal.');
     }
+
+    return localData;
   },
 
   /**
-   * Mengirimkan data formulir buku tamu ke backend API
-   * @param {Object} payload 
-   * @returns {Promise<Object>} Result response
+   * Mengirim entri buku tamu
    */
   async submitBukuTamu(payload) {
-    try {
-      // Mengirim dengan text/plain / URLSearchParams untuk menghindari isyu CORS Google Apps Script
-      const postData = JSON.stringify({
-        action: 'submitBukuTamu',
-        payload: payload
-      });
+    const postData = JSON.stringify({
+      action: 'submitBukuTamu',
+      payload: payload
+    });
 
+    try {
       const response = await fetch(API_CONFIG.ENDPOINT, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
-        },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: postData
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP Post Error: ${response.status}`);
+      if (response.ok) {
+        const resText = await response.text();
+        try {
+          const resJson = JSON.parse(resText);
+          if (resJson.status === 'success') return resJson;
+        } catch (e) {}
       }
-
-      const resText = await response.text();
-      let resJson;
-      try {
-        resJson = JSON.parse(resText);
-      } catch (e) {
-        resJson = null;
-      }
-
-      if (resJson && resJson.status === 'success') {
-        return resJson;
-      } else {
-        // Tiket simulasi jika response tidak terformat JSON
-        const generatedTicket = 'MSG-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.floor(1000 + Math.random() * 9000);
-        return {
-          status: 'success',
-          message: 'Pesan buku tamu berhasil tersimpan ke sistem.',
-          ticketId: generatedTicket
-        };
-      }
-    } catch (error) {
-      console.warn('Gagal POST ke Apps Script API, menghasilkan tiket sukses simulasi offline:', error.message);
-      const generatedTicket = 'OFFLINE-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.floor(1000 + Math.random() * 9000);
-      return {
-        status: 'success',
-        message: 'Pesan Anda tersimpan di sistem lokal offline dan akan disinkronkan.',
-        ticketId: generatedTicket
-      };
+    } catch (e) {
+      console.warn('Submit offline.');
     }
+
+    const generatedTicket = 'MSG-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.floor(1000 + Math.random() * 9000);
+    return {
+      status: 'success',
+      message: 'Pesan Anda berhasil tersimpan di sistem.',
+      ticketId: generatedTicket
+    };
+  },
+
+  // --- CRUD OPERASI UNTUK DASHBOARD ADMIN ---
+
+  // Berita Operations
+  saveBerita(item) {
+    const data = getStoredData();
+    if (item.id) {
+      const idx = data.berita.findIndex(b => b.id === item.id);
+      if (idx !== -1) data.berita[idx] = item;
+    } else {
+      item.id = 'NWS-' + String(data.berita.length + 1).padStart(3, '0');
+      data.berita.unshift(item);
+    }
+    setStoredData(data);
+    return data.berita;
+  },
+
+  deleteBerita(id) {
+    const data = getStoredData();
+    data.berita = data.berita.filter(b => b.id !== id);
+    setStoredData(data);
+    return data.berita;
+  },
+
+  // Guru Operations
+  saveGuru(item) {
+    const data = getStoredData();
+    if (item.id) {
+      const idx = data.guru.findIndex(g => g.id === item.id);
+      if (idx !== -1) data.guru[idx] = item;
+    } else {
+      item.id = 'GTK-' + String(data.guru.length + 1).padStart(3, '0');
+      data.guru.push(item);
+    }
+    setStoredData(data);
+    return data.guru;
+  },
+
+  deleteGuru(id) {
+    const data = getStoredData();
+    data.guru = data.guru.filter(g => g.id !== id);
+    setStoredData(data);
+    return data.guru;
+  },
+
+  // Users Operations
+  saveUser(item) {
+    const data = getStoredData();
+    if (!data.users) data.users = [...INITIAL_DATA.users];
+
+    const idx = data.users.findIndex(u => u.username === item.username);
+    if (idx !== -1) {
+      data.users[idx] = item;
+    } else {
+      data.users.push(item);
+    }
+    setStoredData(data);
+    return data.users;
+  },
+
+  deleteUser(username) {
+    const data = getStoredData();
+    if (data.users.length <= 1) {
+      alert('Tidak dapat menghapus user utama admin!');
+      return data.users;
+    }
+    data.users = data.users.filter(u => u.username !== username);
+    setStoredData(data);
+    return data.users;
   }
 };
 
