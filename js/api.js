@@ -6,7 +6,7 @@
  */
 
 // Live Endpoint Web App Google Apps Script
-const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbx2P3NOiiwku-tg6ppFfdRX-XNy6F0nUX132GCGiCo_rSAN9Z2sRu64-dupG4whb7Fg/exec';
+const GAS_API_URL = window.GAS_API_URL || 'https://script.google.com/macros/s/AKfycbx2P3NOiiwku-tg6ppFfdRX-XNy6F0nUX132GCGiCo_rSAN9Z2sRu64-dupG4whb7Fg/exec';
 
 const API_CONFIG = {
   ENDPOINT: GAS_API_URL,
