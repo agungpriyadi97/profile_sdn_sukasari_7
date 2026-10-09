@@ -2,7 +2,7 @@
  * js/app.js
  * Logika interaktivitas UI publik SDN Sukasari 4 Kota Tangerang.
  * Rendering data dinamis dari SchoolAPI (GET getPublicData),
- * pembersihan skeleton loader, fallback gambar nyata (Unsplash & Lokal),
+ * pembersihan skeleton loader, pemuatan gambar lokal resmi (asset/images/sdnsukasari4/),
  * penanganan modal detail berita, filter kategori GTK & Berita, dan validasi form buku tamu.
  */
 
@@ -17,16 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedNewsType: 'Semua'
   };
 
+  // Daftar Gambar Lokal Resmi dari folder asset/images/sdnsukasari4/
+  const LOCAL_IMAGES = [
+    'asset/images/sdnsukasari4/images 1.jpg',
+    'asset/images/sdnsukasari4/images 2.jpg',
+    'asset/images/sdnsukasari4/images 3.jpg',
+    'asset/images/sdnsukasari4/images 4.jpg'
+  ];
+
   // DOM Elements (Mendukung ID lama & baru)
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
   const mobileOverlay = document.getElementById('mobile-menu-overlay');
   const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
   const mobileLinks = document.querySelectorAll('.mobile-link');
-  
-  const teacherGrid = document.getElementById('teacher-grid') || document.getElementById('guruContainer');
-  const newsGrid = document.getElementById('news-grid') || document.getElementById('beritaContainer');
-  const achievementGrid = document.getElementById('achievement-grid') || document.getElementById('prestasiContainer');
   
   const guestbookForm = document.getElementById('guestbook-form');
   const formAlert = document.getElementById('form-alert');
@@ -46,10 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load Data dari API / Graceful Fallback
     try {
       const publicData = await window.SchoolAPI.getPublicData();
-      state.profil = publicData.profil || {};
-      state.guru = publicData.guru || [];
-      state.berita = publicData.berita || [];
-      state.prestasi = publicData.prestasi || [];
+      state.profil = (publicData && publicData.profil) ? publicData.profil : {};
+      state.guru = (publicData && publicData.guru && publicData.guru.length > 0) ? publicData.guru : [];
+      state.berita = (publicData && publicData.berita && publicData.berita.length > 0) ? publicData.berita : [];
+      state.prestasi = (publicData && publicData.prestasi && publicData.prestasi.length > 0) ? publicData.prestasi : [];
 
       renderProfil();
       renderGuru();
@@ -57,15 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
       renderPrestasi();
     } catch (error) {
       console.error('Terjadi kesalahan saat memuat data aplikasi:', error);
-      loadFallback();
+      renderProfil();
+      renderGuru();
+      renderBerita();
+      renderPrestasi();
     }
-  }
-
-  function loadFallback() {
-    renderProfil();
-    renderGuru();
-    renderBerita();
-    renderPrestasi();
   }
 
   // --- EVENT LISTENERS ---
@@ -171,30 +171,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Helper Real Placeholder Image Generator
-  function getGuruPhoto(name, photoUrl) {
-    if (photoUrl && photoUrl !== '-' && photoUrl.trim() !== '') {
+  // Helper Resolver Gambar Lokal Resmi
+  function getGuruPhoto(photoUrl, index = 0) {
+    if (photoUrl && photoUrl !== '-' && photoUrl.trim() !== '' && !photoUrl.includes('unsplash')) {
       return photoUrl;
     }
-    // Real portrait placeholder via Unsplash / Local fallback
-    return `https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400`;
+    // Rotasi gambar lokal resmi dari folder asset/images/sdnsukasari4/
+    const defaultGuruPhotos = [
+      'asset/images/sdnsukasari4/images 2.jpg',
+      'asset/images/sdnsukasari4/images 3.jpg',
+      'asset/images/sdnsukasari4/images 4.jpg',
+      'asset/images/sdnsukasari4/images 1.jpg'
+    ];
+    return defaultGuruPhotos[index % defaultGuruPhotos.length];
   }
 
-  function getNewsImage(item) {
+  function getNewsImage(item, index = 0) {
     const url = item.gambar_url || item.gambar;
-    if (url && url !== '-' && url.trim() !== '') {
+    if (url && url !== '-' && url.trim() !== '' && !url.includes('unsplash')) {
       return url;
     }
-    return (item.tipe === 'Agenda' || item.tipe === 'Agenda Kegiatan')
-      ? 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=800'
-      : 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=800';
+    const defaultNewsPhotos = [
+      'asset/images/sdnsukasari4/images 1.jpg',
+      'asset/images/sdnsukasari4/images 3.jpg',
+      'asset/images/sdnsukasari4/images 4.jpg',
+      'asset/images/sdnsukasari4/images 2.jpg'
+    ];
+    return defaultNewsPhotos[index % defaultNewsPhotos.length];
   }
 
-  function getPrestasiImage(photoUrl) {
-    if (photoUrl && photoUrl !== '-' && photoUrl.trim() !== '') {
+  function getPrestasiImage(photoUrl, index = 0) {
+    if (photoUrl && photoUrl !== '-' && photoUrl.trim() !== '' && !photoUrl.includes('unsplash')) {
       return photoUrl;
     }
-    return 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=600';
+    const defaultPrestasiPhotos = [
+      'asset/images/sdnsukasari4/images 1.jpg',
+      'asset/images/sdnsukasari4/images 3.jpg',
+      'asset/images/sdnsukasari4/images 4.jpg',
+      'asset/images/sdnsukasari4/images 2.jpg'
+    ];
+    return defaultPrestasiPhotos[index % defaultPrestasiPhotos.length];
   }
 
   // 2. Render Direktori Guru & Staf (Bersihkan Skeleton)
@@ -224,16 +240,17 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Bersihkan Skeleton & Render Kartu Guru Real
-    container.innerHTML = filteredGuru.map(guru => {
+    // Hapus Skeleton Loader & Render Kartu Guru Berfoto Lokal Resmi
+    container.innerHTML = filteredGuru.map((guru, index) => {
       const name = guru.nama || guru.nama_lengkap || 'Dewan Guru';
-      const imgSrc = getGuruPhoto(name, guru.foto_url || guru.foto);
+      const rawPhoto = guru.foto_url || guru.foto;
+      const imgSrc = getGuruPhoto(rawPhoto, index);
       const category = guru.kategori || 'Pendidik';
 
       return `
         <div class="bento-card bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition duration-300 flex flex-col items-center text-center group">
           <div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-indigo-500 via-amber-400 to-emerald-400 mb-4 group-hover:scale-105 transition duration-300">
-            <img src="${imgSrc}" alt="${name}" class="w-full h-full object-cover rounded-full bg-slate-100" onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400'">
+            <img src="${imgSrc}" alt="${name}" class="w-full h-full object-cover rounded-full bg-slate-100" onerror="this.onerror=null; this.src='asset/images/sdnsukasari4/images 2.jpg';">
           </div>
           <span class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-[11px] font-extrabold uppercase tracking-wider mb-2">
             ${category}
@@ -274,16 +291,17 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Bersihkan Skeleton & Render Berita Real
-    container.innerHTML = filteredNews.map(item => {
+    // Hapus Skeleton Loader & Render Kartu Berita Berfoto Lokal Resmi
+    container.innerHTML = filteredNews.map((item, index) => {
       const isAgenda = item.tipe === 'Agenda' || item.tipe === 'Agenda Kegiatan';
       const badgeClass = isAgenda ? 'bg-amber-500 text-slate-950 font-black' : 'bg-indigo-600 text-white font-bold';
-      const imgSrc = getNewsImage(item);
+      const imgSrc = getNewsImage(item, index);
+      const idStr = item.id || item.id_konten || `NWS-${index+1}`;
 
       return `
-        <div class="bento-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-lg transition duration-300 flex flex-col group cursor-pointer" onclick="openNewsModal('${item.id || item.id_konten}')">
+        <div class="bento-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-lg transition duration-300 flex flex-col group cursor-pointer" onclick="openNewsModal('${idStr}')">
           <div class="h-48 overflow-hidden relative bg-slate-100">
-            <img src="${imgSrc}" alt="${item.judul}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <img src="${imgSrc}" alt="${item.judul}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null; this.src='asset/images/sdnsukasari4/images 1.jpg';">
             <div class="absolute top-3 left-3">
               <span class="px-3 py-1 rounded-full text-xs uppercase tracking-wider ${badgeClass} shadow-md">
                 ${item.tipe || 'Berita'}
@@ -332,7 +350,12 @@ document.addEventListener('DOMContentLoaded', () => {
       badgeEl.className = 'px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-indigo-600 shadow-md';
     }
 
-    document.getElementById('modal-image').src = getNewsImage(item);
+    const modalImg = document.getElementById('modal-image');
+    modalImg.src = getNewsImage(item, 0);
+    modalImg.onerror = function() {
+      this.onerror = null;
+      this.src = 'asset/images/sdnsukasari4/images 1.jpg';
+    };
 
     newsModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
@@ -361,16 +384,17 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Bersihkan Skeleton & Render Prestasi Real
-    container.innerHTML = state.prestasi.map(item => {
-      const imgSrc = getPrestasiImage(item.foto_url || item.foto);
+    // Hapus Skeleton Loader & Render Kartu Prestasi Berfoto Lokal Resmi
+    container.innerHTML = state.prestasi.map((item, index) => {
+      const rawPhoto = item.foto_url || item.foto;
+      const imgSrc = getPrestasiImage(rawPhoto, index);
       const lomba = item.lomba || item.nama_lomba || 'Lomba Prestasi';
       const nama = item.nama || item.nama_siswa || 'Siswa Berprestasi';
 
       return `
         <div class="bento-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md transition flex flex-col group">
           <div class="h-44 bg-slate-100 relative overflow-hidden">
-            <img src="${imgSrc}" alt="${lomba}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <img src="${imgSrc}" alt="${lomba}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.onerror=null; this.src='asset/images/sdnsukasari4/images 3.jpg';">
             <div class="absolute top-3 right-3 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black text-xs px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
               <i data-lucide="trophy" class="w-3.5 h-3.5 text-slate-950"></i>
               ${item.peringkat || 'Juara 1'}
