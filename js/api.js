@@ -6,7 +6,7 @@
  */
 
 // Live Endpoint Web App Google Apps Script Baru
-const GAS_API_URL = window.GAS_API_URL || 'https://script.google.com/macros/s/AKfycbz--zxXLrNqQHe5XiU93bDKP0vqnGEyXUNcAlELZqFSgA1JMrqvJEh6oHNU2TPaEyv3/exec';
+var GAS_API_URL = (typeof window !== 'undefined' && window.GAS_API_URL) ? window.GAS_API_URL : 'https://script.google.com/macros/s/AKfycbz--zxXLrNqQHe5XiU93bDKP0vqnGEyXUNcAlELZqFSgA1JMrqvJEh6oHNU2TPaEyv3/exec';
 
 const API_CONFIG = {
   ENDPOINT: GAS_API_URL,
