@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDN Sukasari 7 Kota Tangerang - Portal Informasi Resmi Sekolah</title>
+    <meta name="description" content="Website Resmi SDN Sukasari 7 Kota Tangerang. Informasi profil sekolah, direktori guru, agenda, berita, prestasi siswa, dan pendaftaran PPDB.">
+    <meta name="keywords" content="SDN Sukasari 7, SD Negeri Sukasari 7 Kota Tangerang, Sekolah Dasar Tangerang, PPDB Kota Tangerang">
+    <meta name="author" content="SDN Sukasari 7 Kota Tangerang">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="SDN Sukasari 7 Kota Tangerang">
+    <meta property="og:description" content="Portal Resmi Informasi Pendidikan UPT Satuan Pendidikan SDN Sukasari 7 Kota Tangerang.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#16a34a',
+                            600: '#15803d',
+                            700: '#166534',
+                            800: '#14532d',
+                            900: '#064e3b',
+                        },
+                        navy: {
+                            800: '#0f172a',
+                            900: '#0b1329',
+                        },
+                        gold: {
+                            500: '#eab308',
+                            600: '#ca8a04',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- STATUS BANNER / TOP BAR -->
+    <div class="bg-brand-900 text-slate-200 text-xs py-2 px-4 border-b border-brand-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4 flex-wrap justify-center sm:justify-start">
+                <span class="flex items-center gap-1.5">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                    <strong>NPSN:</strong> 20606454
+                </span>
+                <span class="hidden md:inline text-brand-700">|</span>
+                <span class="flex items-center gap-1.5">
+                    <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
+                    <strong>Akreditasi:</strong> A (Unggul)
+                </span>
+                <span class="hidden lg:inline text-brand-700">|</span>
+                <span class="hidden lg:flex items-center gap-1.5">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-rose-400"></i>
+                    Kota Tangerang, Banten
+                </span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="tel:02155792834" class="flex items-center gap-1 hover:text-emerald-300 transition">
+                    <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                    (021) 55792834
+                </a>
+                <a href="mailto:sdnsukasari7tangerang@gmail.com" class="hidden sm:flex items-center gap-1 hover:text-emerald-300 transition">
+                    <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                    sdnsukasari7tangerang@gmail.com
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand Name -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 p-0.5 shadow-md shadow-brand-500/20 group-hover:scale-105 transition duration-300">
+                        <div class="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
+                            <i data-lucide="graduation-cap" class="w-7 h-7 text-brand-600"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="block text-xs font-bold tracking-wider text-brand-600 uppercase">UPT Satuan Pendidikan</span>
+                        <h1 class="text-lg font-extrabold text-slate-900 tracking-tight leading-none group-hover:text-brand-600 transition">
+                            SDN SUKASARI 7
+                        </h1>
+                        <span class="text-[11px] text-slate-500 font-medium">Kota Tangerang, Banten</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <a href="#beranda" class="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition">Beranda</a>
+                    <a href="#profil" class="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition">Profil</a>
+                    <a href="#gtk" class="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition">Guru & Staf</a>
+                    <a href="#berita" class="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition">Berita & Agenda</a>
+                    <a href="#prestasi" class="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition">Prestasi</a>
+                    <a href="#ppdb" class="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition">Info PPDB</a>
+                    <a href="#buku-tamu" class="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition">Buku Tamu</a>
+                </nav>
+
+                <!-- Desktop Action Button -->
+                <div class="hidden lg:flex items-center">
+                    <a href="#ppdb" class="inline-flex items-center justify-center px-4 py-2.5 rounded-xl bg-brand-600 text-white font-semibold text-sm shadow-md shadow-brand-600/30 hover:bg-brand-700 hover:shadow-lg transition duration-200 gap-2">
+                        <i data-lucide="user-plus" class="w-4 h-4"></i>
+                        Portal PPDB
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex lg:hidden">
+                    <button id="mobile-menu-btn" type="button" class="inline-flex items-center justify-center p-2 rounded-xl text-slate-600 hover:text-brand-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500" aria-label="Toggle Menu">
+                        <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-2 shadow-xl">
+            <a href="#beranda" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Beranda</a>
+            <a href="#profil" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Profil Sekolah</a>
+            <a href="#gtk" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Guru & Staf</a>
+            <a href="#berita" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Berita & Agenda</a>
+            <a href="#prestasi" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Prestasi Siswa</a>
+            <a href="#ppdb" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Info PPDB Kota Tangerang</a>
+            <a href="#buku-tamu" class="mobile-link block px-4 py-2.5 rounded-lg text-base font-semibold text-slate-700 hover:bg-brand-50 hover:text-brand-600">Buku Tamu & Lokasi</a>
+            <div class="pt-2">
+                <a href="https://ppdb.tangerangkota.go.id" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-center px-4 py-3 rounded-xl bg-brand-600 text-white font-bold text-center gap-2 shadow-md">
+                    <i data-lucide="external-link" class="w-5 h-5"></i>
+                    Daftar PPDB Online
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- HERO SECTION -->
+        <section id="beranda" class="relative gradient-hero text-white overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28">
+            <!-- Decorative background elements -->
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#34d399_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-emerald-300 text-xs sm:text-sm font-semibold tracking-wide">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            Portal Resmi Pendidikan Dasar Kota Tangerang
+                        </div>
+
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                            Mewujudkan Generasi <span class="gradient-text">Cerdas & Berkarakter</span>
+                        </h1>
+
+                        <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                            Selamat Datang di UPT Satuan Pendidikan SDN Sukasari 7 Kota Tangerang. Lingkungan belajar yang inklusif, ramah anak, berwawasan lingkungan, serta berbasis teknologi Kurikulum Merdeka.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#ppdb" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-500 to-emerald-600 text-white font-bold text-base shadow-lg shadow-brand-600/40 hover:from-brand-600 hover:to-emerald-700 transition duration-300 gap-2.5">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
+                                Panduan PPDB 2026/2027
+                            </a>
+                            <a href="#profil" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-base backdrop-blur-md transition duration-300 gap-2">
+                                <i data-lucide="compass" class="w-5 h-5 text-amber-400"></i>
+                                Jelajahi Profil Sekolah
+                            </a>
+                        </div>
+
+                        <!-- Highlights Badge -->
+                        <div class="pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                                <span class="block text-2xl font-extrabold text-amber-400">A</span>
+                                <span class="text-xs text-slate-300">Akreditasi Unggul</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                                <span class="block text-2xl font-extrabold text-emerald-400">100%</span>
+                                <span class="text-xs text-slate-300">Kurikulum Merdeka</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                                <span class="block text-2xl font-extrabold text-cyan-400">Adiwiyata</span>
+                                <span class="text-xs text-slate-300">Sekolah Hijau</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                                <span class="block text-2xl font-extrabold text-purple-400">20+</span>
+                                <span class="text-xs text-slate-300">Prestasi Kota/Prov</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Hero Visual / Card -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 bg-slate-900 group">
+                            <img src="asset/images/image-backgraound.jpg" alt="Gedung SDN Sukasari 7 Kota Tangerang" class="w-full h-[400px] object-cover group-hover:scale-105 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+                            
+                            <div class="absolute bottom-0 inset-x-0 p-6 space-y-2">
+                                <span class="inline-block px-3 py-1 rounded-full bg-brand-500 text-white text-xs font-bold uppercase tracking-wider">Gedung Utama</span>
+                                <h3 class="text-xl font-bold text-white">UPT SP SDN Sukasari 7</h3>
+                                <p class="text-xs text-slate-300 flex items-center gap-1.5">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-emerald-400"></i>
+                                    Jl. Kasasi Raya No. 1, Kel. Sukasari, Kec. Tangerang
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SAMBUTAN KEPALA SEKOLAH -->
+        <section class="py-16 bg-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-br from-brand-50 to-slate-50 rounded-3xl p-6 sm:p-10 border border-brand-100 shadow-sm relative overflow-hidden">
+                    <div class="grid lg:grid-cols-12 gap-8 items-center">
+                        
+                        <!-- Kepsek Photo Frame -->
+                        <div class="lg:col-span-4 flex flex-col items-center text-center">
+                            <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full p-2 bg-gradient-to-tr from-brand-600 via-emerald-400 to-amber-400 shadow-xl">
+                                <div class="w-full h-full rounded-full overflow-hidden bg-white relative flex items-center justify-center">
+                                    <img src="asset/images/imge 1.jpg" alt="Hj. Siti Nurhasanah, M.Pd." class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <h3 id="kepsek-name" class="text-lg font-bold text-slate-900">Hj. Siti Nurhasanah, M.Pd.</h3>
+                                <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Kepala Sekolah SDN Sukasari 7</span>
+                            </div>
+                        </div>
+
+                        <!-- Sambutan Text -->
+                        <div class="lg:col-span-8 space-y-4">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold">
+                                <i data-lucide="quote" class="w-3.5 h-3.5"></i>
+                                Sambutan Kepala Sekolah
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                                Membimbing Potensi, Membentuk Karakter Masa Depan
+                            </h2>
+                            <blockquote id="kepsek-sambutan" class="text-slate-600 italic text-sm sm:text-base leading-relaxed border-l-4 border-brand-500 pl-4 py-1">
+                                "Selamat datang di website resmi SDN Sukasari 7 Kota Tangerang. Kami berkomitmen menyelenggarakan pendidikan dasar yang berkarakter, kreatif, berwawasan lingkungan, serta adaptif terhadap perkembangan teknologi guna mencetak generasi unggul yang beriman dan bertakwim."
+                            </blockquote>
+                            <div class="pt-2 flex items-center gap-6">
+                                <div>
+                                    <span class="block text-xs text-slate-400 font-medium">Status Kepegawaian</span>
+                                    <span class="text-sm font-bold text-slate-800">Aparatur Sipil Negara (ASN)</span>
+                                </div>
+                                <div class="w-px h-8 bg-slate-200"></div>
+                                <div>
+                                    <span class="block text-xs text-slate-400 font-medium">Visi Utama</span>
+                                    <span class="text-sm font-bold text-brand-600">Berkarakter & Digital</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFIL & VISI MISI -->
+        <section id="profil" class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                    <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold uppercase tracking-wider">Identitas & Visi</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Profil SDN Sukasari 7 Kota Tangerang</h2>
+                    <p class="text-slate-600 text-sm sm:text-base">Mengenal lebih dekat sejarah, filosofi pendidikan, serta fasilitas pendukung pembelajaran siswa-siswi kami.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1: Visi Sekolah -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center mb-5">
+                            <i data-lucide="target" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Visi Sekolah</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            "Terwujudnya Peserta Didik yang Beriman dan Bertakwa, Berkarakter Pancasila, Berprestasi Akademik dan Non-Akademik, serta Berbudaya Lingkungan."
+                        </p>
+                    </div>
+
+                    <!-- Card 2: Misi Sekolah -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center mb-5">
+                            <i data-lucide="compass" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Misi Utama</h3>
+                        <ul class="text-slate-600 text-xs sm:text-sm space-y-2 list-disc list-inside">
+                            <li>Menanamkan nilai pembiasaan ibadah dan budi pekerti luhur.</li>
+                            <li>Melaksanakan pembelajaran Kurikulum Merdeka yang berbasis projek.</li>
+                            <li>Mengembangkan bakat seni, olahraga, dan sains siswa.</li>
+                            <li>Menciptakan lingkungan sekolah hijau, bersih, dan bebas sampah.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3: Sarana & Prasarana -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition md:col-span-2 lg:col-span-1">
+                        <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-5">
+                            <i data-lucide="building-2" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-3">Fasilitas Unggulan</h3>
+                        <div class="grid grid-cols-2 gap-2 text-xs font-semibold text-slate-700">
+                            <div class="p-2 rounded-lg bg-slate-50 flex items-center gap-2">
+                                <i data-lucide="monitor" class="w-4 h-4 text-brand-600"></i> Lab Komputer ANBK
+                            </div>
+                            <div class="p-2 rounded-lg bg-slate-50 flex items-center gap-2">
+                                <i data-lucide="book-open" class="w-4 h-4 text-brand-600"></i> Perpustakaan Digital
+                            </div>
+                            <div class="p-2 rounded-lg bg-slate-50 flex items-center gap-2">
+                                <i data-lucide="trophy" class="w-4 h-4 text-brand-600"></i> Lapangan Serbaguna
+                            </div>
+                            <div class="p-2 rounded-lg bg-slate-50 flex items-center gap-2">
+                                <i data-lucide="leaf" class="w-4 h-4 text-brand-600"></i> Taman Adiwiyata
+                            </div>
+                            <div class="p-2 rounded-lg bg-slate-50 flex items-center gap-2">
+                                <i data-lucide="wifi" class="w-4 h-4 text-brand-600"></i> Wi-Fi Area Publik
+                            </div>
+                            <div class="p-2 rounded-lg bg-slate-50 flex items-center gap-2">
+                                <i data-lucide="shield" class="w-4 h-4 text-brand-600"></i> Keamanan CCTV 24/7
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DIREKTORI GURU & TENAGA KEPENDIDIKAN (GTK) -->
+        <section id="gtk" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                    <div class="space-y-2">
+                        <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold uppercase tracking-wider">Tenaga Pendidik</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Guru & Staf Kependidikan</h2>
+                        <p class="text-slate-600 text-sm">Tim pendidik profesional yang berdedikasi membimbing putra-putri Anda.</p>
+                    </div>
+
+                    <!-- Category Filter Tabs -->
+                    <div class="flex items-center gap-1 overflow-x-auto pb-2 md:pb-0" id="gtk-tabs">
+                        <button data-category="Semua" class="gtk-tab active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-600 text-white transition">Semua</button>
+                        <button data-category="Pimpinan" class="gtk-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Pimpinan</button>
+                        <button data-category="Guru Kelas" class="gtk-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Guru Kelas</button>
+                        <button data-category="Guru Mapel" class="gtk-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Guru Mapel</button>
+                        <button data-category="Tenaga Kependidikan" class="gtk-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Staf TU</button>
+                    </div>
+                </div>
+
+                <!-- Teacher Cards Grid Container -->
+                <div id="teacher-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Skeleton Loader Placeholder -->
+                    <div class="animate-pulse bg-slate-100 rounded-2xl h-64 border border-slate-200"></div>
+                    <div class="animate-pulse bg-slate-100 rounded-2xl h-64 border border-slate-200"></div>
+                    <div class="animate-pulse bg-slate-100 rounded-2xl h-64 border border-slate-200"></div>
+                    <div class="animate-pulse bg-slate-100 rounded-2xl h-64 border border-slate-200"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BERITA & AGENDA SEKOLAH -->
+        <section id="berita" class="py-16 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                    <div class="space-y-2">
+                        <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider">Kabar Terbaru</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Berita & Agenda Sekolah</h2>
+                        <p class="text-slate-600 text-sm">Informasi kegiatan, pengumuman resmi, dan dokumentasi program SDN Sukasari 7.</p>
+                    </div>
+
+                    <!-- Filter Tabs -->
+                    <div class="flex items-center gap-1" id="news-tabs">
+                        <button data-type="Semua" class="news-tab active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-brand-600 text-white transition">Semua</button>
+                        <button data-type="Berita" class="news-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Berita</button>
+                        <button data-type="Agenda" class="news-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition">Agenda</button>
+                    </div>
+                </div>
+
+                <!-- News Grid Container -->
+                <div id="news-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Skeleton Loader Placeholder -->
+                    <div class="animate-pulse bg-white rounded-2xl h-80 border border-slate-200"></div>
+                    <div class="animate-pulse bg-white rounded-2xl h-80 border border-slate-200"></div>
+                    <div class="animate-pulse bg-white rounded-2xl h-80 border border-slate-200"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRESTASI SISWA (HALL OF FAME) -->
+        <section id="prestasi" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                    <span class="px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-bold uppercase tracking-wider">Hall of Fame</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Etalase Prestasi Siswa</h2>
+                    <p class="text-slate-600 text-sm sm:text-base">Kebanggaan keluarga besar SDN Sukasari 7 atas raihan juara di berbagai kejuaraan sains, olahraga, dan seni.</p>
+                </div>
+
+                <!-- Achievement Cards Grid -->
+                <div id="achievement-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Skeleton Loader -->
+                    <div class="animate-pulse bg-slate-100 rounded-2xl h-72 border border-slate-200"></div>
+                    <div class="animate-pulse bg-slate-100 rounded-2xl h-72 border border-slate-200"></div>
+                    <div class="animate-pulse bg-slate-100 rounded-2xl h-72 border border-slate-200"></div>
+                    <div class="animate-pulse bg-slate-100 rounded-2xl h-72 border border-slate-200"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKSI PANDUAN PPDB KOTA TANGERANG -->
+        <section id="ppdb" class="py-16 bg-gradient-to-br from-brand-900 via-slate-900 to-emerald-950 text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            Penerimaan Peserta Didik Baru (PPDB) 2026/2027
+                        </div>
+                        
+                        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+                            Siap Bergabung dengan Keluarga Besar <span class="text-emerald-400">SDN Sukasari 7</span>?
+                        </h2>
+                        
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            Proses pendaftaran PPDB SDN Sukasari 7 Kota Tangerang dilaksanakan secara terintegrasi melalui portal resmi Dinas Pendidikan Kota Tangerang dengan transparansi penuh pada jalur Zonasi, Afirmasi, dan Perpindahan Orang Tua.
+                        </p>
+
+                        <!-- Syarat Berkas List -->
+                        <div class="bg-white/5 backdrop-blur-md rounded-2xl p-5 border border-white/10 space-y-3">
+                            <h4 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                Persyaratan Berkas Pendaftaran:
+                            </h4>
+                            <div class="grid sm:grid-cols-2 gap-2 text-xs text-slate-200">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="file-text" class="w-3.5 h-3.5 text-emerald-400"></i> Akta Kelahiran Asli & Fotokopi
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="file-text" class="w-3.5 h-3.5 text-emerald-400"></i> Kartu Keluarga (KK) Kota Tangerang
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="file-text" class="w-3.5 h-3.5 text-emerald-400"></i> KTP Kedua Orang Tua / Wali
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="file-text" class="w-3.5 h-3.5 text-emerald-400"></i> Usia Minimal 6 Tahun per 1 Juli 2026
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Direct Link Button -->
+                        <div class="pt-2 flex flex-col sm:flex-row gap-4">
+                            <a href="https://ppdb.tangerangkota.go.id" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-extrabold text-sm hover:from-amber-400 hover:to-amber-500 transition duration-300 gap-2 shadow-lg shadow-amber-500/20">
+                                Portal PPDB Online Kota Tangerang
+                                <i data-lucide="external-link" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#buku-tamu" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition gap-2">
+                                Pertanyaan seputar PPDB?
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Jalur Info Box -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/15 space-y-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i data-lucide="layers" class="w-5 h-5 text-emerald-400"></i>
+                                Jalur Pendaftaran Resmi
+                            </h3>
+                            
+                            <div class="space-y-3 text-xs sm:text-sm">
+                                <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                                    <strong class="block text-emerald-300 mb-1">1. Jalur Zonasi (70%)</strong>
+                                    <p class="text-slate-300 text-xs">Diperuntukkan bagi calon peserta didik yang berdomisili dekat lokasi SDN Sukasari 7 berdasarkan kelurahan/kecamatan.</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                                    <strong class="block text-amber-300 mb-1">2. Jalur Afirmasi (15%)</strong>
+                                    <p class="text-slate-300 text-xs">Diperuntukkan bagi peserta didik dari keluarga ekonomi tidak mampu (terdaftar KIP/DTKS).</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                                    <strong class="block text-cyan-300 mb-1">3. Perpindahan Tugas Orang Tua (5%)</strong>
+                                    <p class="text-slate-300 text-xs">Melampirkan surat penugasan resmi dari instansi/perusahaan tempat orang tua bekerja.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- LAYANAN BUKU TAMU & MAPS -->
+        <section id="buku-tamu" class="py-16 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                    <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold uppercase tracking-wider">Layanan Terpadu</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Buku Tamu & Peta Lokasi</h2>
+                    <p class="text-slate-600 text-sm sm:text-base">Kirimkan pesan, pertanyaan, atau permohonan kunjungan Anda secara langsung ke Layanan TU Sekolah.</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Guestbook Form -->
+                    <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <i data-lucide="message-square-plus" class="w-5 h-5 text-brand-600"></i>
+                            Formulir Buku Tamu Digital
+                        </h3>
+                        <p class="text-xs text-slate-500 mb-6">Isi formulir berikut untuk mendapatkan No. Tiket Konfirmasi dari Tata Usaha.</p>
+
+                        <!-- Alert Result Message Container -->
+                        <div id="form-alert" class="hidden mb-6 p-4 rounded-2xl text-xs sm:text-sm"></div>
+
+                        <form id="guestbook-form" class="space-y-4">
+                            <div>
+                                <label for="nama" class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap <span class="text-rose-500">*</span></label>
+                                <input type="text" id="nama" name="nama" required placeholder="Masukkan nama Anda" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="kategori" class="block text-xs font-bold text-slate-700 mb-1">Kategori Tamu <span class="text-rose-500">*</span></label>
+                                    <select id="kategori" name="kategori" required class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition bg-white">
+                                        <option value="Calon Wali Murid">Calon Wali Murid</option>
+                                        <option value="Orang Tua Murid">Orang Tua Murid</option>
+                                        <option value="Instansi / Kedinasan">Instansi / Kedinasan</option>
+                                        <option value="Alumni">Alumni</option>
+                                        <option value="Umum">Umum</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="whatsapp" class="block text-xs font-bold text-slate-700 mb-1">No. WhatsApp <span class="text-rose-500">*</span></label>
+                                    <input type="tel" id="whatsapp" name="whatsapp" required placeholder="0812xxxxxxx" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="keperluan" class="block text-xs font-bold text-slate-700 mb-1">Keperluan / Topik <span class="text-rose-500">*</span></label>
+                                <input type="text" id="keperluan" name="keperluan" required placeholder="Contoh: Informasi PPDB / Legalisir Ijazah" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition">
+                            </div>
+
+                            <div>
+                                <label for="pesan" class="block text-xs font-bold text-slate-700 mb-1">Isi Pesan / Pertanyaan <span class="text-rose-500">*</span></label>
+                                <textarea id="pesan" name="pesan" rows="4" required placeholder="Tuliskan detail pertanyaan atau keperluan Anda..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 transition"></textarea>
+                            </div>
+
+                            <button type="submit" id="btn-submit-guestbook" class="w-full py-3.5 px-6 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-md shadow-brand-600/30 transition duration-200 flex items-center justify-center gap-2">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                                Kirim Pesan Buku Tamu
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Google Maps Iframe Container -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 space-y-4">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                                        <i data-lucide="map-pin" class="w-5 h-5 text-rose-500"></i>
+                                        Peta Lokasi Sekolah
+                                    </h3>
+                                    <p class="text-xs text-slate-500 mt-1">Jl. Kasasi Raya No. 1, Kel. Sukasari, Kec. Tangerang, Kota Tangerang</p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold">Buka Map</span>
+                            </div>
+
+                            <!-- Responsive Map Embed -->
+                            <div class="w-full h-80 rounded-2xl overflow-hidden border border-slate-200 relative bg-slate-100">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15866.476449588117!2d106.62284878715823!3d-6.181705499999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f92df00d2825%3A0x45e33f4381edc088!2sSekolah%20Dasar%20Negeri%20Sukasari%207!5e0!3m2!1sid!2sid!4v1791527350842!5m2!1sid!2sid" 
+                                    class="w-full h-full border-0" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 text-xs text-slate-600 pt-2">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="clock" class="w-4 h-4 text-brand-600"></i>
+                                    <span><strong>Jam Operasional:</strong><br>Senin - Jumat (07.00 - 15.00 WIB)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="navigation" class="w-4 h-4 text-brand-600"></i>
+                                    <span><strong>Aksesibilitas:</strong><br>Dekat dengan Pusat Kota Tangerang</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- NEWS DETAIL MODAL -->
+    <div id="news-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-100 transform transition-all relative my-8">
+            <button id="close-news-modal" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-900/50 hover:bg-slate-900 text-white flex items-center justify-center backdrop-blur-md transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div id="modal-image-container" class="w-full h-64 bg-slate-100 relative">
+                <img id="modal-image" src="" alt="News Image" class="w-full h-full object-cover">
+                <div class="absolute bottom-4 left-4">
+                    <span id="modal-badge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-brand-600 shadow-md"></span>
+                </div>
+            </div>
+            <div class="p-6 sm:p-8 space-y-4">
+                <div class="text-xs font-semibold text-slate-400 flex items-center gap-2">
+                    <i data-lucide="calendar" class="w-4 h-4 text-brand-600"></i>
+                    <span id="modal-date"></span>
+                </div>
+                <h3 id="modal-title" class="text-2xl font-bold text-slate-900 leading-snug"></h3>
+                <div id="modal-content" class="text-slate-600 text-sm leading-relaxed whitespace-pre-line border-t border-slate-100 pt-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-xs sm:text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Col 1: School Identity -->
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2 text-white">
+                        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
+                            <i data-lucide="graduation-cap" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <span class="font-extrabold text-base tracking-tight">SDN SUKASARI 7</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        UPT Satuan Pendidikan Dasar Negeri di Lingkungan Dinas Pendidikan Kota Tangerang, Banten. Berkomitmen membentuk generasi cerdas dan bertakwa.
+                    </p>
+                </div>
+
+                <!-- Col 2: Navigation Links -->
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">Navigasi Utama</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#beranda" class="hover:text-emerald-400 transition">Beranda</a></li>
+                        <li><a href="#profil" class="hover:text-emerald-400 transition">Profil & Visi Misi</a></li>
+                        <li><a href="#gtk" class="hover:text-emerald-400 transition">Direktori Guru & Staf</a></li>
+                        <li><a href="#berita" class="hover:text-emerald-400 transition">Berita & Agenda</a></li>
+                        <li><a href="#prestasi" class="hover:text-emerald-400 transition">Prestasi Siswa</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Government Links -->
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">Tautan Resmi</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="https://ppdb.tangerangkota.go.id" target="_blank" class="hover:text-emerald-400 transition">Portal PPDB Kota Tangerang</a></li>
+                        <li><a href="https://tangerangkota.go.id" target="_blank" class="hover:text-emerald-400 transition">Pemerintah Kota Tangerang</a></li>
+                        <li><a href="https://kemdikbud.go.id" target="_blank" class="hover:text-emerald-400 transition">Kementerian Pendidikan & Kebudayaan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact -->
+                <div class="space-y-2">
+                    <h4 class="text-white font-bold text-sm mb-3">Kontak Sekolah</h4>
+                    <p class="text-xs flex items-center gap-2">
+                        <i data-lucide="map-pin" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                        Jl. Kasasi Raya No. 1, Kel. Sukasari, Kec. Tangerang
+                    </p>
+                    <p class="text-xs flex items-center gap-2">
+                        <i data-lucide="phone" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                        (021) 55792834
+                    </p>
+                    <p class="text-xs flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                        sdnsukasari7tangerang@gmail.com
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-2">
+                <p>&copy; 2026 SDN Sukasari 7 Kota Tangerang. All rights reserved.</p>
+                <p class="text-[11px]">Dikembangkan untuk Transparansi Layanan Informasi Publik Sekolah.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

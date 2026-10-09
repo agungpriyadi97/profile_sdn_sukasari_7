@@ -1,0 +1,39 @@
+/* 
+ * css/style.css
+ * Styling kustom untuk Website Resmi SDN Sukasari 7 Kota Tangerang
+ */
+
+/* Glassmorphism Card Utility */
+.glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Custom Gradient Hero Background */
+.gradient-hero {
+    background: linear-gradient(135deg, #064e3b 0%, #0f172a 60%, #1e293b 100%);
+}
+
+/* Custom Gradient Text */
+.gradient-text {
+    background: linear-gradient(135deg, #4ade80 0%, #facc15 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+    background: #16a34a;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #15803d;
+}
