@@ -15,7 +15,7 @@
 | **Status** | Approved / Production |
 | **Target Platform** | Web Application (Responsive Desktop, Tablet, & Mobile) |
 | **Tech Stack** | Frontend: HTML5, Tailwind CSS via CDN, Lucide Icons via unpkg, Vanilla JavaScript (ES6+)<br>Backend API: Google Apps Script Web App<br>Database: Google Sheets (6 Tab Worksheets)<br>Deployment: Vercel / Netlify / GitHub Pages |
-| **Live API Endpoint** | `https://script.google.com/macros/s/AKfycbyuN3XdfHhmRDE6naGIXeWw7tDKL25maGO2ol-jYq1l5thX-TGX5BzuTgl0ROiY5QWQ/exec` |
+| **Live API Endpoint** | `https://script.google.com/macros/s/AKfycbz--zxXLrNqQHe5XiU93bDKP0vqnGEyXUNcAlELZqFSgA1JMrqvJEh6oHNU2TPaEyv3/exec` |
 
 ---
 
@@ -55,7 +55,7 @@ Database utama berada pada Google Sheets dengan nama spreadsheet **`DB_PORTAL_SD
 ## 3. Spesifikasi Kontrak API (Google Apps Script)
 
 - **Base URL:**
-  `https://script.google.com/macros/s/AKfycbyuN3XdfHhmRDE6naGIXeWw7tDKL25maGO2ol-jYq1l5thX-TGX5BzuTgl0ROiY5QWQ/exec`
+  `https://script.google.com/macros/s/AKfycbz--zxXLrNqQHe5XiU93bDKP0vqnGEyXUNcAlELZqFSgA1JMrqvJEh6oHNU2TPaEyv3/exec`
 
 ### 3.1 Endpoint GET (Fetch Data Publik)
 - **URL Query:** `?action=getPublicData`

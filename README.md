@@ -44,10 +44,10 @@ sdn-sukasari-4/
 
 API menggunakan Google Apps Script Web App yang terhubung ke Google Sheets:
 - **Base Endpoint URL:**  
-  `https://script.google.com/macros/s/AKfycbyuN3XdfHhmRDE6naGIXeWw7tDKL25maGO2ol-jYq1l5thX-TGX5BzuTgl0ROiY5QWQ/exec`
+  `https://script.google.com/macros/s/AKfycbz--zxXLrNqQHe5XiU93bDKP0vqnGEyXUNcAlELZqFSgA1JMrqvJEh6oHNU2TPaEyv3/exec`
 - **Konstanta API di `js/api.js`:**
   ```javascript
-  const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbyuN3XdfHhmRDE6naGIXeWw7tDKL25maGO2ol-jYq1l5thX-TGX5BzuTgl0ROiY5QWQ/exec';
+  const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbz--zxXLrNqQHe5XiU93bDKP0vqnGEyXUNcAlELZqFSgA1JMrqvJEh6oHNU2TPaEyv3/exec';
   ```
 - **Fungsi GET (`?action=getPublicData`):** Mengambil data profil sekolah, direktori guru, berita/agenda, dan prestasi siswa.
 - **Fungsi POST (`submitBukuTamu`, `saveBerita`, `deleteBerita`, `saveGuru`, `deleteGuru`, `saveAdminUser`, `deleteAdminUser`):** Mengirim request JSON ke backend.
