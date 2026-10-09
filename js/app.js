@@ -1,7 +1,7 @@
 /**
  * js/app.js
- * Logika interaktivitas UI, rendering data dinamis dari SchoolAPI,
- * penanganan modal berita, filter kategori, dan validasi form buku tamu.
+ * Logika interaktivitas UI publik, rendering data dinamis dari SchoolAPI,
+ * penanganan modal detail berita, filter kategori GTK & Berita, dan validasi AJAX form buku tamu.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Render Profil & Sambutan Kepsek
   function renderProfil() {
     if (!state.profil) return;
+
     const kepsekNameEl = document.getElementById('kepsek-name');
     const kepsekSambutanEl = document.getElementById('kepsek-sambutan');
 
@@ -164,7 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (photoUrl && photoUrl !== '-' && photoUrl.trim() !== '') {
       return photoUrl;
     }
-    // Jika tidak ada foto, gunakan UI Avatars API dengan nama guru
     return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=16a34a&color=fff&size=200&bold=true`;
   }
 
@@ -231,8 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const isAgenda = item.tipe === 'Agenda';
       const badgeClass = isAgenda ? 'bg-amber-500 text-white' : 'bg-brand-600 text-white';
       const defaultImg = isAgenda 
-        ? 'asset/images/images 3.jpg'
-        : 'asset/images/images 2.jpg';
+        ? 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=800'
+        : 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=800';
       const imgSrc = (item.gambar_url && item.gambar_url !== '-') ? item.gambar_url : defaultImg;
 
       return `
@@ -288,8 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const defaultImg = item.tipe === 'Agenda'
-      ? 'asset/images/images 3.jpg'
-      : 'asset/images/images 2.jpg';
+      ? 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=800'
+      : 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=800';
     document.getElementById('modal-image').src = (item.gambar_url && item.gambar_url !== '-') ? item.gambar_url : defaultImg;
 
     newsModal.classList.remove('hidden');
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     achievementGrid.innerHTML = state.prestasi.map(item => {
-      const defaultImg = 'asset/images/images 3.jpg';
+      const defaultImg = 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=400';
       const imgSrc = (item.foto_url && item.foto_url !== '-') ? item.foto_url : defaultImg;
 
       return `
@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <p class="text-xs text-emerald-700">
             Nomor Tiket Layanan Anda: <strong class="bg-emerald-200 text-emerald-950 px-2 py-0.5 rounded font-mono text-xs">${response.ticketId || 'TKT-PENDING'}</strong>
           </p>
-          <p class="text-[11px] text-emerald-600 italic mt-1">Petugas Tata Usaha SDN Sukasari 7 akan menghubungi nomor WhatsApp Anda jika diperlukan.</p>
+          <p class="text-[11px] text-emerald-600 italic mt-1">Petugas Tata Usaha SDN Sukasari 4 akan menghubungi nomor WhatsApp Anda jika diperlukan.</p>
         `;
 
         guestbookForm.reset();

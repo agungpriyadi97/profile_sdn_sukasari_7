@@ -1,6 +1,6 @@
-# 🏫 Website Resmi SDN Sukasari 7 Kota Tangerang
+# 🏫 Website Resmi & Dashboard TU SDN Sukasari 4 Kota Tangerang
 
-Selamat datang di repositori resmi **Website Profil & Layanan Informasi Publik SDN Sukasari 7 Kota Tangerang**. Website ini dirancang modern, responsif (*mobile-first*), cepat, dan mudah diakses oleh orang tua murid, calon pendaftar PPDB, guru, serta masyarakat luas.
+Selamat datang di repositori resmi **Website Profil & Dashboard Administrasi TU SDN Sukasari 4 Kota Tangerang**. Website ini dirancang modern, responsif (*mobile-first*), cepat, dan mudah diakses oleh orang tua murid, calon pendaftar PPDB, guru, serta masyarakat luas.
 
 ---
 
@@ -10,22 +10,32 @@ Selamat datang di repositori resmi **Website Profil & Layanan Informasi Publik S
 - **Styling:** Tailwind CSS (via CDN) & Google Fonts (Plus Jakarta Sans)
 - **Icons:** Lucide Icons (via Unpkg)
 - **Backend API:** Google Apps Script Web App (Serverless)
-- **Database:** Google Sheets (`DB_PORTAL_SDN_SUKASARI_7`)
-- **Interactive Features:** Responsive Navigation, Skeleton Loaders, News Article Modal Popup, Dynamic GTK Directory with Fallback Avatars, Hall of Fame Prestasi, & Asynchronous Guestbook Form.
+- **Database:** Google Sheets (`DB_PORTAL_SDN_SUKASARI_4` dengan 6 Worksheets)
+- **Fitur Unggulan:** 
+  - Profil Sekolah & Kepala Sekolah (Romlah, S.Pd., M.Pd.)
+  - Keunggulan Sekolah Ramah Anak Terstandarisasi PISA (Pusat Informasi Sahabat Anak)
+  - Prestasi Lomba Tingkat Pramuka Penggalang & Akademik OSN/FLS2N
+  - Informasi & Direct Link PPDB Kota Tangerang (`https://ppdb.tangerangkota.go.id`)
+  - Form Buku Tamu Asinkronus (AJAX) + Generasi Nomor Tiket
+  - Embed Interactive Google Maps SDN Sukasari 4 Kota Tangerang
+  - Dashboard Admin TU untuk Manajemen Berita, Guru & Staf, serta Admin Users
 
 ---
 
 ## 📁 Struktur Direktori Proyek
 
 ```text
-sdn-sukasari-7/
-├── index.html        # Berkas HTML utama halaman portal sekolah
+sdn-sukasari-4/
+├── index.html        # Halaman publik website profil resmi sekolah
+├── admin.html        # Dashboard administrasi Tata Usaha (TU)
 ├── js/
-│   ├── api.js        # Modul integrasi ke Google Apps Script API & Graceful Fallback
-│   └── app.js        # Logika interaktivitas UI, event listeners, filter, & modal
-├── PRD.md            # Product Requirement Document (PRD) lengkap
-├── README.md         # Petunjuk penggunaan & instruksi deployment
-└── .gitignore        # Mengabaikan file sistem & log yang tidak diperlukan
+│   ├── api.js        # Modul integrasi ke Google Apps Script API & Data Fallback
+│   └── app.js        # Logika interaktivitas UI publik, filter, & modal reader
+├── css/
+│   └── style.css     # Styling kustom & animasi tambahan
+├── PRD.md            # Product Requirement Document (PRD) v1.0.0
+├── README.md         # Dokumentasi setup, API URL, & panduan deploy
+└── .gitignore        # Berkas penutup git ignore
 ```
 
 ---
@@ -34,72 +44,66 @@ sdn-sukasari-7/
 
 API menggunakan Google Apps Script Web App yang terhubung ke Google Sheets:
 - **Base Endpoint URL:**  
-  `https://script.google.com/macros/s/AKfycbwxuOp-iQ4pL0QQUK7JF26YFLHYCuEWk4Kv8VXm6QqZE821_b46Yfu_vs5Z7CW2-dta8g/exec`
-- **GET (`?action=getPublicData`):** Mengambil data profil sekolah, direktori guru, berita/agenda, dan prestasi siswa.
-- **POST (`action: submitBukuTamu`):** Mengirim entri buku tamu dan menghasilkan nomor tiket konfirmasi.
+  `https://script.google.com/macros/s/AKfycbx2P3NOiiwku-tg6ppFfdRX-XNy6F0nUX132GCGiCo_rSAN9Z2sRu64-dupG4whb7Fg/exec`
+- **Konstanta API di `js/api.js`:**
+  ```javascript
+  const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbx2P3NOiiwku-tg6ppFfdRX-XNy6F0nUX132GCGiCo_rSAN9Z2sRu64-dupG4whb7Fg/exec';
+  ```
+- **Fungsi GET (`?action=getPublicData`):** Mengambil data profil sekolah, direktori guru, berita/agenda, dan prestasi siswa.
+- **Fungsi POST (`submitBukuTamu`, `saveBerita`, `deleteBerita`, `saveGuru`, `deleteGuru`, `saveAdminUser`, `deleteAdminUser`):** Mengirim request JSON ke backend.
 
 ---
 
 ## 🚀 Cara Menjalankan Proyek Secara Lokal
 
-Karena proyek ini dibangun menggunakan Vanilla HTML/JS dan Tailwind CSS CDN, Anda tidak memerlukan instalasi build step kompilasi Node.js (zero setup required).
+Proyek ini dibangun menggunakan Vanilla HTML/JS dan Tailwind CSS CDN sehingga tidak memerlukan proses kompilasi Node.js (zero build step).
 
 ### Opsi 1: Menggunakan VS Code Live Server (Direkomendasikan)
 1. Buka folder proyek ini di Visual Studio Code.
 2. Install ekstensi **Live Server** di VS Code.
-3. Klik kanan pada file `index.html`, lalu pilih **"Open with Live Server"**.
-4. Website akan terbuka otomatis di browser Anda pada alamat `http://127.0.0.1:5500`.
+3. Klik kanan pada file `index.html` atau `admin.html`, lalu pilih **"Open with Live Server"**.
+4. Website akan terbuka otomatis di browser Anda.
 
-### Opsi 2: Menggunakan HTTP Server Lokal Sederhana
-Jika Anda memiliki Node.js atau Python terinstall:
+### Opsi 2: Menggunakan HTTP Server Lokal
+Jika Anda memiliki Node.js atau Python:
 ```bash
-# Menggunakan Python 3:
+# Python 3:
 python -m http.server 8000
 
-# Menggunakan npx serve:
+# npx serve:
 npx serve .
 ```
 Akses di browser melalui `http://localhost:8000`.
 
 ---
 
-## 📤 Langkah Deployment ke GitHub & Vercel
+## 🔑 Kredensial Login Admin TU Default
 
-Target Repositori Remote Git:  
-`https://github.com/agungpriyadi97/profile_sekolah.git`
+Untuk mengakses `admin.html` secara lokal maupun server:
+- **Username:** `admin`
+- **Password:** `admin123`
+*(Password akan diverifikasi menggunakan hashing SHA-256).*
 
-### 1. Inisialisasi & Push ke GitHub
+---
 
-Jalankan perintah berikut di terminal root proyek:
+## 📤 Langkah Push ke GitHub & Deploy ke Vercel / Netlify
 
+### 1. Push ke GitHub
 ```bash
-# Inisialisasi Git repositori
-git init
-
-# Tambahkan remote repository
-git remote add origin https://github.com/agungpriyadi97/profile_sekolah.git
-
-# Stage semua file
+# Commit & Push perubahan ke repositori
 git add .
-
-# Commit perdana
-git commit -m "feat: inisialisasi awal website resmi SDN Sukasari 7 Kota Tangerang v1.0.0"
-
-# Push ke branch main (atau master)
-git branch -M main
+git commit -m "feat: implementasi lengkap website resmi & dashboard TU SDN Sukasari 4 Kota Tangerang"
 git push -u origin main
 ```
 
-### 2. Deployment ke Vercel
-
-1. Buka dashboard [Vercel](https://vercel.com) dan login dengan akun GitHub Anda.
-2. Klik tombol **"Add New..."** -> **"Project"**.
-3. Hubungkan akun GitHub Anda dan pilih repositori `agungpriyadi97/profile_sekolah`.
-4. Pilih **Framework Preset:** `Other` (Static Site).
-5. Klik **"Deploy"**. Vercel akan mempublikasikan website secara otomatis dalam beberapa detik dengan domain gratis `.vercel.app`.
+### 2. Deploy ke Vercel / Netlify
+1. Hubungkan repositori GitHub ke dashboard [Vercel](https://vercel.com) atau [Netlify](https://netlify.com).
+2. Set **Framework Preset** ke `Other` (Static Site).
+3. Set **Root Directory** ke `./`.
+4. Klik **Deploy**. Website akan langsung aktif secara publik dengan SSL HTTPS gratis.
 
 ---
 
 ## 📄 Lisensi & Hak Cipta
 
-© 2026 UPT Satuan Pendidikan SDN Sukasari 7 Kota Tangerang. Seluruh hak cipta dilindungi undang-undang.
+© 2026 UPT Satuan Pendidikan SDN Sukasari 4 Kota Tangerang. Seluruh hak cipta dilindungi undang-undang.

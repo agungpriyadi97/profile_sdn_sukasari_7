@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Admin TU - SDN Sukasari 7 Kota Tangerang</title>
-    <meta name="description" content="Portal Administrasi Internal & Pengelolaan Data SDN Sukasari 7 Kota Tangerang">
+    <title>Portal Admin TU - SDN Sukasari 4 Kota Tangerang</title>
+    <meta name="description" content="Portal Administrasi Internal & Pengelolaan Data SDN Sukasari 4 Kota Tangerang">
     
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,7 @@
 </head>
 <body class="font-sans bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
 
-    <!-- LOGIN SCREEN CONTAINER (Ditampilkan jika belum login) -->
+    <!-- LOGIN SCREEN CONTAINER -->
     <div id="login-view" class="fixed inset-0 z-50 bg-gradient-to-br from-slate-900 via-brand-950 to-slate-900 flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl border border-slate-100 relative overflow-hidden">
             <div class="absolute -top-12 -right-12 w-32 h-32 bg-brand-500/10 rounded-full blur-xl"></div>
@@ -52,7 +52,7 @@
                     <i data-lucide="shield-check" class="w-9 h-9"></i>
                 </div>
                 <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Portal Admin TU</h1>
-                <p class="text-xs text-slate-500">SDN Sukasari 7 Kota Tangerang (Admin_Users)</p>
+                <p class="text-xs text-slate-500">SDN Sukasari 4 Kota Tangerang</p>
             </div>
 
             <!-- Login Alert Box -->
@@ -84,13 +84,13 @@
             <div class="mt-6 pt-4 border-t border-slate-100 text-center">
                 <a href="index.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:underline">
                     <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-                    Kembali ke Halaman Utama Website
+                    Kembali ke Website Resmi
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- MAIN DASHBOARD APP CONTAINER (Ditampilkan setelah login) -->
+    <!-- MAIN DASHBOARD CONTAINER -->
     <div id="dashboard-view" class="hidden flex-grow flex flex-col">
         <!-- Top Navigation Bar Admin -->
         <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
@@ -101,14 +101,14 @@
                     </div>
                     <div>
                         <h2 class="text-base font-extrabold text-slate-900 leading-tight">Dashboard Administrasi TU</h2>
-                        <span class="text-[11px] text-slate-500">SDN Sukasari 7 Kota Tangerang</span>
+                        <span class="text-[11px] text-slate-500">SDN Sukasari 4 Kota Tangerang</span>
                     </div>
                 </div>
 
                 <!-- Admin User Identity & Logout -->
                 <div class="flex items-center gap-4">
                     <div class="text-right hidden sm:block">
-                        <span id="user-display-name" class="block text-xs font-bold text-slate-900">Operator TU SDN Sukasari 7</span>
+                        <span id="user-display-name" class="block text-xs font-bold text-slate-900">Operator TU SDN Sukasari 4</span>
                         <span id="user-display-role" class="inline-block px-2 py-0.5 rounded-full bg-brand-100 text-brand-800 text-[10px] font-extrabold uppercase">SUPER_ADMIN</span>
                     </div>
                     <button id="btn-logout" class="p-2 rounded-xl bg-slate-100 hover:bg-rose-50 hover:text-rose-600 text-slate-600 transition flex items-center gap-1.5 text-xs font-bold">
@@ -129,7 +129,7 @@
                         <i data-lucide="inbox" class="w-6 h-6"></i>
                     </div>
                     <div>
-                        <span class="block text-xs text-slate-400 font-medium">Buku Tamu masuk</span>
+                        <span class="block text-xs text-slate-400 font-medium">Buku Tamu Masuk</span>
                         <h3 id="stat-buku-tamu" class="text-2xl font-extrabold text-slate-900">3</h3>
                     </div>
                 </div>
@@ -140,7 +140,7 @@
                     </div>
                     <div>
                         <span class="block text-xs text-slate-400 font-medium">Berita & Agenda</span>
-                        <h3 id="stat-berita" class="text-2xl font-extrabold text-slate-900">4</h3>
+                        <h3 id="stat-berita" class="text-2xl font-extrabold text-slate-900">3</h3>
                     </div>
                 </div>
 
@@ -149,316 +149,337 @@
                         <i data-lucide="users" class="w-6 h-6"></i>
                     </div>
                     <div>
-                        <span class="block text-xs text-slate-400 font-medium">Guru & Staf (GTK)</span>
-                        <h3 id="stat-guru" class="text-2xl font-extrabold text-slate-900">11</h3>
+                        <span class="block text-xs text-slate-400 font-medium">Dewan Guru & Staf</span>
+                        <h3 id="stat-guru" class="text-2xl font-extrabold text-slate-900">4</h3>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center gap-4">
                     <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
-                        <i data-lucide="shield" class="w-6 h-6"></i>
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
                     </div>
                     <div>
                         <span class="block text-xs text-slate-400 font-medium">Admin Users</span>
-                        <h3 id="stat-users" class="text-2xl font-extrabold text-slate-900">1</h3>
+                        <h3 id="stat-admin" class="text-2xl font-extrabold text-slate-900">1</h3>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab Navigation Menu -->
-            <div class="bg-white rounded-2xl p-2 border border-slate-200 shadow-sm flex items-center space-x-2 overflow-x-auto">
-                <button data-tab="tab-buku-tamu" class="admin-tab active px-4 py-2.5 rounded-xl text-xs font-bold bg-brand-600 text-white transition flex items-center gap-2 shrink-0">
-                    <i data-lucide="message-square" class="w-4 h-4"></i>
-                    Buku Tamu & Aspirasi
+            <!-- Tab Navigation Control -->
+            <div class="bg-white rounded-2xl p-2 border border-slate-200 shadow-sm flex flex-wrap gap-2">
+                <button class="nav-tab px-5 py-3 rounded-xl text-xs font-bold transition flex items-center gap-2 active bg-brand-600 text-white" data-tab="berita">
+                    <i data-lucide="newspaper" class="w-4 h-4"></i>
+                    1. Kelola Berita & Agenda
                 </button>
-                <button data-tab="tab-berita" class="admin-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition flex items-center gap-2 shrink-0">
-                    <i data-lucide="file-text" class="w-4 h-4"></i>
-                    Kelola Berita & Agenda
+                <button class="nav-tab px-5 py-3 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="guru">
+                    <i data-lucide="users" class="w-4 h-4"></i>
+                    2. Kelola Guru & Staf
                 </button>
-                <button data-tab="tab-guru" class="admin-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition flex items-center gap-2 shrink-0">
-                    <i data-lucide="user-check" class="w-4 h-4"></i>
-                    Kelola Guru & Staf
+                <button class="nav-tab px-5 py-3 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="user">
+                    <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                    3. Kelola Admin User
                 </button>
-                <button data-tab="tab-users" class="admin-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition flex items-center gap-2 shrink-0">
-                    <i data-lucide="shield" class="w-4 h-4"></i>
-                    Admin Users (Admin_Users)
+                <button class="nav-tab px-5 py-3 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200" data-tab="buku-tamu">
+                    <i data-lucide="inbox" class="w-4 h-4"></i>
+                    4. Inbox Buku Tamu
                 </button>
             </div>
 
-            <!-- TAB 1: BUKU TAMU & ASPIRASI -->
-            <section id="tab-buku-tamu" class="admin-tab-content bg-white rounded-3xl p-6 shadow-sm border border-slate-200 space-y-4">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+            <!-- TAB 1: KELOLA BERITA & AGENDA -->
+            <section id="tab-berita" class="tab-content bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900">Daftar Buku Tamu & Aspirasi Masuk</h3>
-                        <p class="text-xs text-slate-500">Pesan dari wali murid, calon pendaftar, dan instansi yang perlu ditindaklanjuti.</p>
+                        <h3 class="text-lg font-extrabold text-slate-900">Kelola Berita, Agenda & Pengumuman</h3>
+                        <p class="text-xs text-slate-500">Tambah, edit, atau hapus artikel publik yang tampil di website utama.</p>
                     </div>
-                </div>
-
-                <!-- Table Buku Tamu -->
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs text-slate-600">
-                        <thead class="bg-slate-50 text-slate-700 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200">
-                            <tr>
-                                <th class="p-3">No. Tiket</th>
-                                <th class="p-3">Pengirim</th>
-                                <th class="p-3">Kategori</th>
-                                <th class="p-3">WhatsApp</th>
-                                <th class="p-3">Keperluan</th>
-                                <th class="p-3">Isi Pesan</th>
-                                <th class="p-3">Status</th>
-                                <th class="p-3 text-right">Aksi TU</th>
-                            </tr>
-                        </thead>
-                        <tbody id="buku-tamu-table-body" class="divide-y divide-slate-100">
-                            <!-- Dynamic Content -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <!-- TAB 2: KELOLA BERITA & AGENDA -->
-            <section id="tab-berita" class="admin-tab-content hidden bg-white rounded-3xl p-6 shadow-sm border border-slate-200 space-y-4">
-                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-900">Kelola Berita & Agenda Sekolah</h3>
-                        <p class="text-xs text-slate-500">Publikasi pengumuman resmi dan kegiatan sekolah.</p>
-                    </div>
-                    <button id="btn-add-berita" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-md">
+                    <button onclick="openModalBerita()" class="px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-md shadow-brand-600/30 flex items-center gap-2 transition">
                         <i data-lucide="plus" class="w-4 h-4"></i>
                         Tambah Berita / Agenda
                     </button>
                 </div>
 
+                <!-- Table Berita -->
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs text-slate-600">
-                        <thead class="bg-slate-50 text-slate-700 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200">
+                        <thead class="bg-slate-50 text-slate-700 font-bold uppercase tracking-wider">
                             <tr>
-                                <th class="p-3">ID</th>
-                                <th class="p-3">Tipe</th>
-                                <th class="p-3">Judul Berita / Agenda</th>
-                                <th class="p-3">Tanggal</th>
-                                <th class="p-3">Ringkasan</th>
-                                <th class="p-3 text-right">Aksi</th>
+                                <th class="p-3.5 rounded-l-xl">ID</th>
+                                <th class="p-3.5">Judul Konten</th>
+                                <th class="p-3.5">Tipe</th>
+                                <th class="p-3.5">Tanggal</th>
+                                <th class="p-3.5">Status</th>
+                                <th class="p-3.5 text-right rounded-r-xl">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="berita-table-body" class="divide-y divide-slate-100">
-                            <!-- Dynamic Content -->
+                        <tbody id="table-berita-body" class="divide-y divide-slate-100 font-medium">
+                            <!-- JS Rendered -->
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <!-- TAB 3: KELOLA GURU & STAF -->
-            <section id="tab-guru" class="admin-tab-content hidden bg-white rounded-3xl p-6 shadow-sm border border-slate-200 space-y-4">
-                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+            <!-- TAB 2: KELOLA GURU & STAF -->
+            <section id="tab-guru" class="tab-content hidden bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900">Direktori Guru & Tenaga Kependidikan</h3>
-                        <p class="text-xs text-slate-500">Data pendidik dan staf administrasi sekolah.</p>
+                        <h3 class="text-lg font-extrabold text-slate-900">Kelola Data Guru & Tenaga Kependidikan</h3>
+                        <p class="text-xs text-slate-500">Atur direktori GTK, jabatan, foto profil, dan status aktif.</p>
                     </div>
-                    <button id="btn-add-guru" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-md">
+                    <button onclick="openModalGuru()" class="px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-md shadow-brand-600/30 flex items-center gap-2 transition">
                         <i data-lucide="user-plus" class="w-4 h-4"></i>
                         Tambah Guru / Staf
                     </button>
                 </div>
 
+                <!-- Table Guru -->
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs text-slate-600">
-                        <thead class="bg-slate-50 text-slate-700 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200">
+                        <thead class="bg-slate-50 text-slate-700 font-bold uppercase tracking-wider">
                             <tr>
-                                <th class="p-3">ID GTK</th>
-                                <th class="p-3">Nama Lengkap</th>
-                                <th class="p-3">Jabatan</th>
-                                <th class="p-3">Kategori</th>
-                                <th class="p-3 text-right">Aksi</th>
+                                <th class="p-3.5 rounded-l-xl">Urutan & Foto</th>
+                                <th class="p-3.5">Nama Pendidik</th>
+                                <th class="p-3.5">Jabatan</th>
+                                <th class="p-3.5">Kategori</th>
+                                <th class="p-3.5">Status</th>
+                                <th class="p-3.5 text-right rounded-r-xl">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="guru-table-body" class="divide-y divide-slate-100">
-                            <!-- Dynamic Content -->
+                        <tbody id="table-guru-body" class="divide-y divide-slate-100 font-medium">
+                            <!-- JS Rendered -->
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            <!-- TAB 4: ADMIN USERS -->
-            <section id="tab-users" class="admin-tab-content hidden bg-white rounded-3xl p-6 shadow-sm border border-slate-200 space-y-4">
-                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+            <!-- TAB 3: KELOLA ADMIN USER -->
+            <section id="tab-user" class="tab-content hidden bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900">Data Pengguna Admin (Tabel Admin_Users)</h3>
-                        <p class="text-xs text-slate-500">Akun pengelola sistem yang terdaftar di Google Sheets `DB_PORTAL_SDN_SUKASARI_7`.</p>
+                        <h3 class="text-lg font-extrabold text-slate-900">Kelola Akun Operator Admin TU</h3>
+                        <p class="text-xs text-slate-500">Manajemen kredensial login akun admin (Password tersimpan dalam hashing SHA-256).</p>
                     </div>
-                    <button id="btn-add-user" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-md">
-                        <i data-lucide="shield-plus" class="w-4 h-4"></i>
+                    <button onclick="openModalUser()" class="px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs shadow-md shadow-brand-600/30 flex items-center gap-2 transition">
+                        <i data-lucide="user-plus" class="w-4 h-4"></i>
                         Tambah Admin User
                     </button>
                 </div>
 
+                <!-- Table Admin Users -->
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs text-slate-600">
-                        <thead class="bg-slate-50 text-slate-700 font-bold uppercase text-[10px] tracking-wider border-b border-slate-200">
+                        <thead class="bg-slate-50 text-slate-700 font-bold uppercase tracking-wider">
                             <tr>
-                                <th class="p-3">Username</th>
-                                <th class="p-3">Password Hash (SHA-256)</th>
-                                <th class="p-3">Nama Petugas</th>
-                                <th class="p-3">Role Status</th>
-                                <th class="p-3 text-right">Aksi</th>
+                                <th class="p-3.5 rounded-l-xl">Username</th>
+                                <th class="p-3.5">Nama Petugas Operator</th>
+                                <th class="p-3.5">Role Privilege</th>
+                                <th class="p-3.5 text-right rounded-r-xl">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody id="users-table-body" class="divide-y divide-slate-100">
-                            <!-- Dynamic Content -->
+                        <tbody id="table-user-body" class="divide-y divide-slate-100 font-medium">
+                            <!-- JS Rendered -->
                         </tbody>
                     </table>
                 </div>
             </section>
 
+            <!-- TAB 4: BUKU TAMU MASUK -->
+            <section id="tab-buku-tamu" class="tab-content hidden bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div class="border-b border-slate-100 pb-5">
+                    <h3 class="text-lg font-extrabold text-slate-900">Inbox Pesan Buku Tamu & Aspirasi</h3>
+                    <p class="text-xs text-slate-500">Daftar permohonan informasi dan pesan yang dikirim pengunjung melalui website.</p>
+                </div>
+
+                <!-- Table Buku Tamu -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-600">
+                        <thead class="bg-slate-50 text-slate-700 font-bold uppercase tracking-wider">
+                            <tr>
+                                <th class="p-3.5 rounded-l-xl">Tiket ID</th>
+                                <th class="p-3.5">Nama Pengirim</th>
+                                <th class="p-3.5">Kategori</th>
+                                <th class="p-3.5">WhatsApp</th>
+                                <th class="p-3.5">Keperluan & Pesan</th>
+                                <th class="p-3.5 text-right rounded-r-xl">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-guestbook-body" class="divide-y divide-slate-100 font-medium">
+                            <!-- JS Rendered -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </main>
 
         <!-- Footer Admin -->
         <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 mt-auto">
-            &copy; 2026 SDN Sukasari 7 Kota Tangerang - Dashboard Sistem Informasi Management Sekolah.
+            &copy; 2026 SDN Sukasari 4 Kota Tangerang - Dashboard Sistem Informasi Manajemen Sekolah.
         </footer>
     </div>
 
-    <!-- MODAL FORM BERITA & AGENDA -->
-    <div id="modal-berita" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h3 id="modal-berita-title" class="text-lg font-bold text-slate-900">Tambah Berita / Agenda</h3>
-                <button onclick="closeModal('modal-berita')" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
-            </div>
-            <form id="form-berita" class="space-y-3 text-xs">
+    <!-- MODAL FORM BERITA -->
+    <div id="modal-berita" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl space-y-4">
+            <h3 id="modal-berita-title" class="text-lg font-extrabold text-slate-900">Tambah Berita / Agenda</h3>
+            
+            <form id="form-berita" class="space-y-3">
                 <input type="hidden" id="berita-id">
+                
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Judul Konten *</label>
+                    <input type="text" id="berita-judul" required placeholder="Masukkan judul pengumuman / berita" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                </div>
+
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block font-bold text-slate-700 mb-1">Tipe Konten</label>
-                        <select id="berita-tipe" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
-                            <option value="Berita">Berita</option>
-                            <option value="Agenda">Agenda</option>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Tipe Konten *</label>
+                        <select id="berita-tipe" required class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-brand-500">
+                            <option value="Berita Utama">Berita Utama</option>
+                            <option value="Agenda">Agenda Kegiatan</option>
+                            <option value="Pengumuman">Pengumuman</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block font-bold text-slate-700 mb-1">Tanggal</label>
-                        <input type="text" id="berita-tanggal" required placeholder="Contoh: 10 Oktober 2026" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Tanggal *</label>
+                        <input type="date" id="berita-tanggal" required class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-brand-500">
                     </div>
                 </div>
+
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">Judul Berita / Agenda</label>
-                    <input type="text" id="berita-judul" required placeholder="Masukkan judul..." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">URL Gambar Header</label>
+                    <input type="url" id="berita-gambar" placeholder="https://..." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
                 </div>
+
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">Ringkasan Singkat</label>
-                    <textarea id="berita-ringkasan" rows="2" required placeholder="Ringkasan berita..." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs"></textarea>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Ringkasan Singkat *</label>
+                    <textarea id="berita-ringkasan" rows="2" required placeholder="Ringkasan 1-2 kalimat..." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs"></textarea>
                 </div>
+
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">Isi Artikel Lengkap</label>
-                    <textarea id="berita-isi" rows="4" placeholder="Detail artikel berita..." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs"></textarea>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Isi Artikel Lengkap</label>
+                    <textarea id="berita-isi" rows="4" placeholder="Tuliskan berita lengkap..." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs"></textarea>
                 </div>
-                <div>
-                    <label class="block font-bold text-slate-700 mb-1">URL Gambar (Opsional)</label>
-                    <input type="text" id="berita-gambar" placeholder="asset/images/images 2.jpg" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
-                </div>
-                <div class="pt-2 flex justify-end gap-2">
-                    <button type="button" onclick="closeModal('modal-berita')" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 font-bold">Batal</button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-bold">Simpan Berita</button>
+
+                <div class="flex items-center justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeModalBerita()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 font-bold text-xs hover:bg-slate-200">Batal</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-bold text-xs hover:bg-brand-700 shadow-md">Simpan Data</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- MODAL FORM GURU & STAF -->
-    <div id="modal-guru" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h3 id="modal-guru-title" class="text-lg font-bold text-slate-900">Tambah Guru & Staf (GTK)</h3>
-                <button onclick="closeModal('modal-guru')" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
-            </div>
-            <form id="form-guru" class="space-y-3 text-xs">
+    <!-- MODAL FORM GURU -->
+    <div id="modal-guru" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl space-y-4">
+            <h3 id="modal-guru-title" class="text-lg font-extrabold text-slate-900">Tambah Data Guru / Staf</h3>
+            
+            <form id="form-guru" class="space-y-3">
                 <input type="hidden" id="guru-id">
+                
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">Nama Lengkap & Gelar</label>
-                    <input type="text" id="guru-nama" required placeholder="Contoh: Ahmad Fauzi, S.Pd." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap & Gelar *</label>
+                    <input type="text" id="guru-nama" required placeholder="Contoh: Romlah, S.Pd., M.Pd." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-brand-500">
                 </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Jabatan *</label>
+                        <input type="text" id="guru-jabatan" required placeholder="Contoh: Guru Kelas 5" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Kategori *</label>
+                        <select id="guru-kategori" required class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                            <option value="Pendidik">Pendidik</option>
+                            <option value="Pimpinan">Pimpinan</option>
+                            <option value="Tenaga Kependidikan">Tenaga Kependidikan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Urutan Tampil *</label>
+                        <input type="number" id="guru-urutan" required value="1" min="1" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Status Aktif *</label>
+                        <select id="guru-status" required class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                            <option value="Aktif">Aktif</option>
+                            <option value="Non-Aktif">Non-Aktif</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">Jabatan / Tugas</label>
-                    <input type="text" id="guru-jabatan" required placeholder="Contoh: Guru Kelas VI" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">URL Foto Profil</label>
+                    <input type="url" id="guru-foto" placeholder="https://..." class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
                 </div>
-                <div>
-                    <label class="block font-bold text-slate-700 mb-1">Kategori GTK</label>
-                    <select id="guru-kategori" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
-                        <option value="Pimpinan">Pimpinan</option>
-                        <option value="Guru Kelas">Guru Kelas</option>
-                        <option value="Guru Mapel">Guru Mapel</option>
-                        <option value="Tenaga Kependidikan">Tenaga Kependidikan (Staf TU)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block font-bold text-slate-700 mb-1">Foto URL (Opsional / "-" jika belum ada)</label>
-                    <input type="text" id="guru-foto" value="-" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
-                </div>
-                <div class="pt-2 flex justify-end gap-2">
-                    <button type="button" onclick="closeModal('modal-guru')" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 font-bold">Batal</button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-bold">Simpan Guru</button>
+
+                <div class="flex items-center justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeModalGuru()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 font-bold text-xs hover:bg-slate-200">Batal</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-bold text-xs hover:bg-brand-700 shadow-md">Simpan Data Guru</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- MODAL FORM ADMIN USER -->
-    <div id="modal-user" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h3 id="modal-user-title" class="text-lg font-bold text-slate-900">Tambah Admin User (Admin_Users)</h3>
-                <button onclick="closeModal('modal-user')" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
-            </div>
-            <form id="form-user" class="space-y-3 text-xs">
+    <div id="modal-user" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl space-y-4">
+            <h3 id="modal-user-title" class="text-lg font-extrabold text-slate-900">Tambah Akun Admin User</h3>
+            
+            <form id="form-user" class="space-y-3">
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">Username Admin</label>
-                    <input type="text" id="user-username" required placeholder="admin_tu2" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Username *</label>
+                    <input type="text" id="user-username" required placeholder="admin_sukasari4" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
                 </div>
+
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">Nama Petugas / Pengelola</label>
-                    <input type="text" id="user-nama" required placeholder="Staf TU SDN Sukasari 7" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Petugas Operator *</label>
+                    <input type="text" id="user-nama" required placeholder="Staf TU SDN Sukasari 4" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
                 </div>
+
                 <div>
-                    <label class="block font-bold text-slate-700 mb-1">Password Baru</label>
-                    <input type="password" id="user-password" placeholder="Masukkan password (kosongkan jika tidak diubah)" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
-                </div>
-                <div>
-                    <label class="block font-bold text-slate-700 mb-1">Role Status</label>
-                    <select id="user-role" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Role *</label>
+                    <select id="user-role" required class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
                         <option value="SUPER_ADMIN">SUPER_ADMIN</option>
-                        <option value="ADMIN_TU">ADMIN_TU</option>
+                        <option value="OPERATOR_TU">OPERATOR_TU</option>
                     </select>
                 </div>
-                <div class="pt-2 flex justify-end gap-2">
-                    <button type="button" onclick="closeModal('modal-user')" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 font-bold">Batal</button>
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-bold">Simpan User</button>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Password *</label>
+                    <input type="password" id="user-password" required placeholder="Minimal 6 Karakter" class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs">
+                </div>
+
+                <div class="flex items-center justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeModalUser()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 font-bold text-xs hover:bg-slate-200">Batal</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 text-white font-bold text-xs hover:bg-brand-700 shadow-md">Simpan Akun Admin</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- JS Scripts -->
+    <!-- JavaScript API & Dashboard Logic -->
     <script src="js/api.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // SHA-256 Hashing Helper
+        async function sha256(str) {
+            const buffer = new TextEncoder().encode(str);
+            const digest = await crypto.subtle.digest('SHA-256', buffer);
+            return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            let appData = await window.SchoolAPI.getPublicData();
+
             const loginView = document.getElementById('login-view');
             const dashboardView = document.getElementById('dashboard-view');
             const loginForm = document.getElementById('login-form');
             const loginAlert = document.getElementById('login-alert');
             const btnLogout = document.getElementById('btn-logout');
 
-            let currentData = null;
-
-            // Hash SHA-256 helper
-            async function sha256(message) {
-                const msgBuffer = new TextEncoder().encode(message);
-                const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-                const hashArray = Array.from(new Uint8Array(hashBuffer));
-                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-            }
-
-            // Cek Session
-            if (sessionStorage.getItem('admin_logged_in') === 'true') {
+            // Cek Session Auth State
+            if (sessionStorage.getItem('admin_authenticated') === 'true') {
                 showDashboard();
             }
 
@@ -467,24 +488,26 @@
                 e.preventDefault();
                 const userVal = document.getElementById('username').value.trim();
                 const passVal = document.getElementById('password').value.trim();
+
                 const passHash = await sha256(passVal);
 
-                const data = await window.SchoolAPI.getPublicData();
-                const foundUser = (data.users || []).find(u => u.username === userVal);
+                // Cek pencocokan user dari API/Cache
+                const users = appData.users || [];
+                const foundUser = users.find(u => u.username === userVal && (u.password_hash === passHash || passVal === 'admin123'));
 
-                if ((foundUser && (foundUser.password_hash === passHash || passVal === 'admin123')) || (userVal === 'admin' && passVal === 'admin123')) {
-                    sessionStorage.setItem('admin_logged_in', 'true');
-                    sessionStorage.setItem('admin_user', foundUser ? foundUser.nama_petugas : 'Operator TU SDN Sukasari 7');
+                if (foundUser || (userVal === 'admin' && passVal === 'admin123')) {
+                    sessionStorage.setItem('admin_authenticated', 'true');
+                    sessionStorage.setItem('admin_user', foundUser ? foundUser.nama_petugas : 'Operator TU SDN Sukasari 4');
                     showDashboard();
                 } else {
-                    loginAlert.textContent = 'Username atau Password salah! Periksa kembali kredensial Anda.';
+                    loginAlert.textContent = 'Username atau Password yang Anda masukkan salah!';
                     loginAlert.classList.remove('hidden');
                 }
             });
 
             // Logout Handler
             btnLogout.addEventListener('click', () => {
-                sessionStorage.removeItem('admin_logged_in');
+                sessionStorage.removeItem('admin_authenticated');
                 sessionStorage.removeItem('admin_user');
                 location.reload();
             });
@@ -492,274 +515,264 @@
             function showDashboard() {
                 loginView.classList.add('hidden');
                 dashboardView.classList.remove('hidden');
-                initDashboardData();
-            }
-
-            async function initDashboardData() {
                 if (window.lucide) window.lucide.createIcons();
-                setupTabs();
 
-                currentData = await window.SchoolAPI.getPublicData();
-                renderAllTables();
+                document.getElementById('user-display-name').textContent = sessionStorage.getItem('admin_user') || 'Operator TU SDN Sukasari 4';
+                renderDashboard();
             }
 
-            function renderAllTables() {
-                if (!currentData) return;
-
-                const bukuTamuList = (currentData.buku_tamu && currentData.buku_tamu.length > 0) 
-                  ? currentData.buku_tamu 
-                  : [
-                      { ticket: 'MSG-202610-001', pengirim: 'Wali Murid SDN Sukasari 7', kategori: 'Orang Tua Murid', wa: '081255792834', keperluan: 'Konfirmasi Pendaftaran', pesan: 'Pesan terhubung dengan database Google Sheets.', status: 'Selesai' }
-                    ];
-
-                // Stats
-                document.getElementById('stat-buku-tamu').textContent = bukuTamuList.length;
-                document.getElementById('stat-berita').textContent = currentData.berita ? currentData.berita.length : 0;
-                document.getElementById('stat-guru').textContent = currentData.guru ? currentData.guru.length : 0;
-                document.getElementById('stat-users').textContent = currentData.users ? currentData.users.length : 1;
-
-                // Render Table Buku Tamu
-                const btBody = document.getElementById('buku-tamu-table-body');
-                btBody.innerHTML = bukuTamuList.map(item => `
-                    <tr class="hover:bg-slate-50">
-                        <td class="p-3 font-mono font-bold text-brand-700">${item.ticket}</td>
-                        <td class="p-3 font-semibold text-slate-900">${item.pengirim}</td>
-                        <td class="p-3"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] font-bold">${item.kategori}</span></td>
-                        <td class="p-3">${item.wa}</td>
-                        <td class="p-3 font-medium">${item.keperluan}</td>
-                        <td class="p-3 text-slate-500 max-w-xs truncate">${item.pesan}</td>
-                        <td class="p-3">
-                            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${item.status === 'Selesai' ? 'bg-emerald-100 text-emerald-800' : (item.status === 'Diproses' ? 'bg-amber-100 text-amber-800' : 'bg-rose-100 text-rose-800')}">
-                                ${item.status}
-                            </span>
-                        </td>
-                        <td class="p-3 text-right">
-                            <button class="px-2 py-1 rounded bg-brand-600 text-white font-bold text-[10px] hover:bg-brand-700">Tindak Lanjut</button>
-                        </td>
-                    </tr>
-                `).join('');
-
-                // Render Table Berita
-                const newsBody = document.getElementById('berita-table-body');
-                newsBody.innerHTML = (currentData.berita || []).map(b => `
-                    <tr class="hover:bg-slate-50">
-                        <td class="p-3 font-mono font-bold text-slate-500">${b.id}</td>
-                        <td class="p-3"><span class="px-2 py-0.5 rounded-full ${b.tipe === 'Agenda' ? 'bg-amber-100 text-amber-800' : 'bg-brand-100 text-brand-800'} text-[10px] font-bold">${b.tipe}</span></td>
-                        <td class="p-3 font-bold text-slate-900">${b.judul}</td>
-                        <td class="p-3">${b.tanggal}</td>
-                        <td class="p-3 text-slate-500 max-w-xs truncate">${b.ringkasan}</td>
-                        <td class="p-3 text-right space-x-1">
-                            <button onclick="editBerita('${b.id}')" class="px-2 py-1 rounded bg-amber-500 text-white font-bold text-[10px] hover:bg-amber-600">Edit</button>
-                            <button onclick="deleteBerita('${b.id}')" class="px-2 py-1 rounded bg-rose-600 text-white font-bold text-[10px] hover:bg-rose-700">Hapus</button>
-                        </td>
-                    </tr>
-                `).join('');
-
-                // Render Table Guru
-                const guruBody = document.getElementById('guru-table-body');
-                guruBody.innerHTML = (currentData.guru || []).map(g => `
-                    <tr class="hover:bg-slate-50">
-                        <td class="p-3 font-mono font-bold text-slate-500">${g.id}</td>
-                        <td class="p-3 font-bold text-slate-900">${g.nama}</td>
-                        <td class="p-3 font-medium">${g.jabatan}</td>
-                        <td class="p-3"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] font-bold">${g.kategori}</span></td>
-                        <td class="p-3 text-right space-x-1">
-                            <button onclick="editGuru('${g.id}')" class="px-2 py-1 rounded bg-amber-500 text-white font-bold text-[10px] hover:bg-amber-600">Edit</button>
-                            <button onclick="deleteGuru('${g.id}')" class="px-2 py-1 rounded bg-rose-600 text-white font-bold text-[10px] hover:bg-rose-700">Hapus</button>
-                        </td>
-                    </tr>
-                `).join('');
-
-                // Render Table Users
-                const usersBody = document.getElementById('users-table-body');
-                usersBody.innerHTML = (currentData.users || []).map(u => `
-                    <tr class="hover:bg-slate-50">
-                        <td class="p-3 font-bold text-slate-900">${u.username}</td>
-                        <td class="p-3 font-mono text-[10px] text-slate-400 max-w-xs truncate">${u.password_hash}</td>
-                        <td class="p-3 font-semibold text-brand-700">${u.nama_petugas}</td>
-                        <td class="p-3"><span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-extrabold">${u.role}</span></td>
-                        <td class="p-3 text-right space-x-1">
-                            <button onclick="editUser('${u.username}')" class="px-2 py-1 rounded bg-amber-500 text-white font-bold text-[10px] hover:bg-amber-600">Edit</button>
-                            <button onclick="deleteUser('${u.username}')" class="px-2 py-1 rounded bg-rose-600 text-white font-bold text-[10px] hover:bg-rose-700">Hapus</button>
-                        </td>
-                    </tr>
-                `).join('');
-
-                if (window.lucide) window.lucide.createIcons();
+            function renderDashboard() {
+                updateStats();
+                renderTableBerita();
+                renderTableGuru();
+                renderTableUser();
+                renderTableGuestbook();
             }
 
-            function setupTabs() {
-                const tabs = document.querySelectorAll('.admin-tab');
-                const contents = document.querySelectorAll('.admin-tab-content');
+            function updateStats() {
+                document.getElementById('stat-berita').textContent = (appData.berita || []).length;
+                document.getElementById('stat-guru').textContent = (appData.guru || []).length;
+                document.getElementById('stat-admin').textContent = (appData.users || []).length;
+                document.getElementById('stat-buku-tamu').textContent = '3';
+            }
 
-                tabs.forEach(tab => {
-                    tab.addEventListener('click', () => {
-                        tabs.forEach(t => {
-                            t.classList.remove('active', 'bg-brand-600', 'text-white');
-                            t.classList.add('bg-slate-100', 'text-slate-600');
-                        });
+            // --- TAB SWITCHING LOGIC ---
+            const navTabs = document.querySelectorAll('.nav-tab');
+            const tabContents = document.querySelectorAll('.tab-content');
 
-                        contents.forEach(c => c.classList.add('hidden'));
-
-                        const targetId = tab.getAttribute('data-tab');
-                        tab.classList.add('active', 'bg-brand-600', 'text-white');
-                        tab.classList.remove('bg-slate-100', 'text-slate-600');
-                        
-                        const targetContent = document.getElementById(targetId);
-                        if (targetContent) targetContent.classList.remove('hidden');
+            navTabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    const targetTab = tab.getAttribute('data-tab');
+                    
+                    navTabs.forEach(t => {
+                        t.classList.remove('active', 'bg-brand-600', 'text-white');
+                        t.classList.add('bg-slate-100', 'text-slate-600');
                     });
-                });
-            }
 
-            // --- CRUD BERITA HANDLERS ---
-            document.getElementById('btn-add-berita').addEventListener('click', () => {
-                document.getElementById('modal-berita-title').textContent = 'Tambah Berita / Agenda';
-                document.getElementById('form-berita').reset();
-                document.getElementById('berita-id').value = '';
-                openModal('modal-berita');
+                    tab.classList.add('active', 'bg-brand-600', 'text-white');
+                    tab.classList.remove('bg-slate-100', 'text-slate-600');
+
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+
+                    document.getElementById(`tab-${targetTab}`).classList.remove('hidden');
+                    if (window.lucide) window.lucide.createIcons();
+                });
             });
 
-            document.getElementById('form-berita').addEventListener('submit', (e) => {
+            // --- RENDER TABLES ---
+            function renderTableBerita() {
+                const tbody = document.getElementById('table-berita-body');
+                const list = appData.berita || [];
+
+                tbody.innerHTML = list.map(b => `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-3.5 font-bold text-slate-400">${b.id}</td>
+                        <td class="p-3.5 font-bold text-slate-900">${b.judul}</td>
+                        <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-brand-50 text-brand-700 font-bold">${b.tipe}</span></td>
+                        <td class="p-3.5">${b.tanggal}</td>
+                        <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Tampil</span></td>
+                        <td class="p-3.5 text-right space-x-1">
+                            <button onclick="editBerita('${b.id}')" class="p-1.5 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                            <button onclick="deleteBerita('${b.id}')" class="p-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+                if (window.lucide) window.lucide.createIcons();
+            }
+
+            function renderTableGuru() {
+                const tbody = document.getElementById('table-guru-body');
+                const list = appData.guru || [];
+
+                tbody.innerHTML = list.map(g => `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-3.5 font-bold text-slate-900 flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-[10px]">${g.urutan || 1}</span>
+                            <img src="${(g.foto_url && g.foto_url !== '-') ? g.foto_url : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(g.nama)}" class="w-8 h-8 rounded-full object-cover">
+                        </td>
+                        <td class="p-3.5 font-bold text-slate-900">${g.nama}</td>
+                        <td class="p-3.5">${g.jabatan}</td>
+                        <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-bold">${g.kategori || 'Pendidik'}</span></td>
+                        <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">${g.status_aktif || 'Aktif'}</span></td>
+                        <td class="p-3.5 text-right space-x-1">
+                            <button onclick="editGuru('${g.id}')" class="p-1.5 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                            <button onclick="deleteGuru('${g.id}')" class="p-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+                if (window.lucide) window.lucide.createIcons();
+            }
+
+            function renderTableUser() {
+                const tbody = document.getElementById('table-user-body');
+                const list = appData.users || [];
+
+                tbody.innerHTML = list.map(u => `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-3.5 font-bold text-slate-900">${u.username}</td>
+                        <td class="p-3.5">${u.nama_petugas}</td>
+                        <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-purple-50 text-purple-700 font-bold">${u.role}</span></td>
+                        <td class="p-3.5 text-right">
+                            <button onclick="deleteUser('${u.username}')" class="p-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        </td>
+                    </tr>
+                `).join('');
+                if (window.lucide) window.lucide.createIcons();
+            }
+
+            function renderTableGuestbook() {
+                const tbody = document.getElementById('table-guestbook-body');
+                const sampleGuestbook = [
+                    { ticket: 'MSG-202610-001', pengirim: 'Subandi (Wali Murid)', kategori: 'Calon Wali Murid', wa: '081234567890', keperluan: 'Konfirmasi Pendaftaran PPDB', pesan: 'Mohon info mengenai syarat pendaftaran jalur zonasi.', status: 'Selesai' },
+                    { ticket: 'MSG-202610-002', pengirim: 'Dinas Pendidikan Kota Tangerang', kategori: 'Dinas / Instansi', wa: '081198765432', keperluan: 'Verifikasi Sekolah Ramah Anak PISA', pesan: 'Jadwal monitoring lapangan PISA minggu depan.', status: 'Baru' }
+                ];
+
+                tbody.innerHTML = sampleGuestbook.map(g => `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-3.5 font-mono font-bold text-brand-600">${g.ticket}</td>
+                        <td class="p-3.5 font-bold text-slate-900">${g.pengirim}</td>
+                        <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-bold">${g.kategori}</span></td>
+                        <td class="p-3.5">${g.wa}</td>
+                        <td class="p-3.5 max-w-xs">
+                            <strong class="block text-slate-900">${g.keperluan}</strong>
+                            <span class="text-slate-500 line-clamp-1">${g.pesan}</span>
+                        </td>
+                        <td class="p-3.5 text-right"><span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-extrabold text-[10px]">${g.status}</span></td>
+                    </tr>
+                `).join('');
+                if (window.lucide) window.lucide.createIcons();
+            }
+
+            // --- CRUD ACTIONS GLOBAL FUNCTIONS ---
+            window.openModalBerita = () => {
+                document.getElementById('form-berita').reset();
+                document.getElementById('berita-id').value = '';
+                document.getElementById('modal-berita-title').textContent = 'Tambah Berita / Agenda Baru';
+                document.getElementById('modal-berita').classList.remove('hidden');
+            };
+
+            window.closeModalBerita = () => document.getElementById('modal-berita').classList.add('hidden');
+
+            document.getElementById('form-berita').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const item = {
                     id: document.getElementById('berita-id').value,
-                    tipe: document.getElementById('berita-tipe').value,
                     judul: document.getElementById('berita-judul').value,
+                    tipe: document.getElementById('berita-tipe').value,
                     tanggal: document.getElementById('berita-tanggal').value,
+                    gambar_url: document.getElementById('berita-gambar').value,
                     ringkasan: document.getElementById('berita-ringkasan').value,
-                    isi: document.getElementById('berita-isi').value,
-                    gambar_url: document.getElementById('berita-gambar').value || 'asset/images/images 2.jpg'
+                    isi: document.getElementById('berita-isi').value
                 };
-                currentData.berita = window.SchoolAPI.saveBerita(item);
-                closeModal('modal-berita');
-                renderAllTables();
+                appData.berita = await window.SchoolAPI.saveBerita(item);
+                renderTableBerita();
+                updateStats();
+                closeModalBerita();
             });
 
-            window.editBerita = function(id) {
-                const item = currentData.berita.find(b => b.id === id);
-                if (!item) return;
-                document.getElementById('modal-berita-title').textContent = 'Edit Berita / Agenda';
-                document.getElementById('berita-id').value = item.id;
-                document.getElementById('berita-tipe').value = item.tipe;
-                document.getElementById('berita-judul').value = item.judul;
-                document.getElementById('berita-tanggal').value = item.tanggal;
-                document.getElementById('berita-ringkasan').value = item.ringkasan;
-                document.getElementById('berita-isi').value = item.isi || item.ringkasan;
-                document.getElementById('berita-gambar').value = item.gambar_url || '';
-                openModal('modal-berita');
+            window.editBerita = (id) => {
+                const b = appData.berita.find(item => item.id === id);
+                if (!b) return;
+                document.getElementById('berita-id').value = b.id;
+                document.getElementById('berita-judul').value = b.judul;
+                document.getElementById('berita-tipe').value = b.tipe;
+                document.getElementById('berita-tanggal').value = b.tanggal;
+                document.getElementById('berita-gambar').value = b.gambar_url || '';
+                document.getElementById('berita-ringkasan').value = b.ringkasan;
+                document.getElementById('berita-isi').value = b.isi || b.ringkasan;
+                document.getElementById('modal-berita-title').textContent = 'Edit Data Berita';
+                document.getElementById('modal-berita').classList.remove('hidden');
             };
 
-            window.deleteBerita = function(id) {
-                if (confirm(`Apakah Anda yakin ingin menghapus berita ${id}?`)) {
-                    currentData.berita = window.SchoolAPI.deleteBerita(id);
-                    renderAllTables();
+            window.deleteBerita = async (id) => {
+                if (confirm('Yakin ingin menghapus berita ini?')) {
+                    appData.berita = await window.SchoolAPI.deleteBerita(id);
+                    renderTableBerita();
+                    updateStats();
                 }
             };
 
-            // --- CRUD GURU HANDLERS ---
-            document.getElementById('btn-add-guru').addEventListener('click', () => {
-                document.getElementById('modal-guru-title').textContent = 'Tambah Guru & Staf';
+            // GURU CRUD
+            window.openModalGuru = () => {
                 document.getElementById('form-guru').reset();
                 document.getElementById('guru-id').value = '';
-                openModal('modal-guru');
-            });
+                document.getElementById('modal-guru-title').textContent = 'Tambah Data Guru / Staf';
+                document.getElementById('modal-guru').classList.remove('hidden');
+            };
 
-            document.getElementById('form-guru').addEventListener('submit', (e) => {
+            window.closeModalGuru = () => document.getElementById('modal-guru').classList.add('hidden');
+
+            document.getElementById('form-guru').addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const item = {
                     id: document.getElementById('guru-id').value,
                     nama: document.getElementById('guru-nama').value,
                     jabatan: document.getElementById('guru-jabatan').value,
                     kategori: document.getElementById('guru-kategori').value,
-                    foto_url: document.getElementById('guru-foto').value || '-'
+                    urutan: parseInt(document.getElementById('guru-urutan').value) || 1,
+                    status_aktif: document.getElementById('guru-status').value,
+                    foto_url: document.getElementById('guru-foto').value
                 };
-                currentData.guru = window.SchoolAPI.saveGuru(item);
-                closeModal('modal-guru');
-                renderAllTables();
+                appData.guru = await window.SchoolAPI.saveGuru(item);
+                renderTableGuru();
+                updateStats();
+                closeModalGuru();
             });
 
-            window.editGuru = function(id) {
-                const item = currentData.guru.find(g => g.id === id);
-                if (!item) return;
-                document.getElementById('modal-guru-title').textContent = 'Edit Guru & Staf';
-                document.getElementById('guru-id').value = item.id;
-                document.getElementById('guru-nama').value = item.nama;
-                document.getElementById('guru-jabatan').value = item.jabatan;
-                document.getElementById('guru-kategori').value = item.kategori;
-                document.getElementById('guru-foto').value = item.foto_url || '-';
-                openModal('modal-guru');
+            window.editGuru = (id) => {
+                const g = appData.guru.find(item => item.id === id);
+                if (!g) return;
+                document.getElementById('guru-id').value = g.id;
+                document.getElementById('guru-nama').value = g.nama;
+                document.getElementById('guru-jabatan').value = g.jabatan;
+                document.getElementById('guru-kategori').value = g.kategori || 'Pendidik';
+                document.getElementById('guru-urutan').value = g.urutan || 1;
+                document.getElementById('guru-status').value = g.status_aktif || 'Aktif';
+                document.getElementById('guru-foto').value = g.foto_url || '';
+                document.getElementById('modal-guru-title').textContent = 'Edit Data Guru';
+                document.getElementById('modal-guru').classList.remove('hidden');
             };
 
-            window.deleteGuru = function(id) {
-                if (confirm(`Apakah Anda yakin ingin menghapus data GTK ${id}?`)) {
-                    currentData.guru = window.SchoolAPI.deleteGuru(id);
-                    renderAllTables();
+            window.deleteGuru = async (id) => {
+                if (confirm('Yakin ingin menghapus data guru ini?')) {
+                    appData.guru = await window.SchoolAPI.deleteGuru(id);
+                    renderTableGuru();
+                    updateStats();
                 }
             };
 
-            // --- CRUD USER HANDLERS ---
-            document.getElementById('btn-add-user').addEventListener('click', () => {
-                document.getElementById('modal-user-title').textContent = 'Tambah Admin User';
+            // USER CRUD
+            window.openModalUser = () => {
                 document.getElementById('form-user').reset();
-                document.getElementById('user-username').readOnly = false;
-                openModal('modal-user');
-            });
+                document.getElementById('modal-user-title').textContent = 'Tambah Admin User Baru';
+                document.getElementById('modal-user').classList.remove('hidden');
+            };
+
+            window.closeModalUser = () => document.getElementById('modal-user').classList.add('hidden');
 
             document.getElementById('form-user').addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const username = document.getElementById('user-username').value.trim();
-                const nama = document.getElementById('user-nama').value.trim();
-                const pass = document.getElementById('user-password').value.trim();
-                const role = document.getElementById('user-role').value;
-
-                let passHash = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
-                if (pass) {
-                    passHash = await sha256(pass);
-                } else {
-                    const existing = (currentData.users || []).find(u => u.username === username);
-                    if (existing) passHash = existing.password_hash;
-                }
-
+                const pass = document.getElementById('user-password').value;
                 const item = {
-                    username: username,
-                    password_hash: passHash,
-                    nama_petugas: nama,
-                    role: role
+                    username: document.getElementById('user-username').value.trim(),
+                    nama_petugas: document.getElementById('user-nama').value.trim(),
+                    role: document.getElementById('user-role').value,
+                    password_hash: await sha256(pass)
                 };
-
-                currentData.users = window.SchoolAPI.saveUser(item);
-                closeModal('modal-user');
-                renderAllTables();
+                appData.users = await window.SchoolAPI.saveUser(item);
+                renderTableUser();
+                updateStats();
+                closeModalUser();
             });
 
-            window.editUser = function(username) {
-                const item = (currentData.users || []).find(u => u.username === username);
-                if (!item) return;
-                document.getElementById('modal-user-title').textContent = 'Edit Admin User';
-                document.getElementById('user-username').value = item.username;
-                document.getElementById('user-username').readOnly = true;
-                document.getElementById('user-nama').value = item.nama_petugas;
-                document.getElementById('user-password').value = '';
-                document.getElementById('user-role').value = item.role;
-                openModal('modal-user');
-            };
-
-            window.deleteUser = function(username) {
-                if (confirm(`Apakah Anda yakin ingin menghapus user ${username}?`)) {
-                    currentData.users = window.SchoolAPI.deleteUser(username);
-                    renderAllTables();
+            window.deleteUser = async (username) => {
+                if (confirm(`Yakin ingin menghapus akun admin "${username}"?`)) {
+                    appData.users = await window.SchoolAPI.deleteUser(username);
+                    renderTableUser();
+                    updateStats();
                 }
-            };
-
-            // Global Modal Helpers
-            window.openModal = function(id) {
-                const el = document.getElementById(id);
-                if (el) el.classList.remove('hidden');
-            };
-
-            window.closeModal = function(id) {
-                const el = document.getElementById(id);
-                if (el) el.classList.add('hidden');
             };
         });
     </script>
