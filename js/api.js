@@ -200,7 +200,7 @@ const SchoolAPI = {
           kategori: g.kategori || (g.jabatan && g.jabatan.toLowerCase().includes('kepala') ? 'Pimpinan' : 'Pendidik'),
           urutan: g.urutan || g.urutan_tampil || (idx + 1),
           status_aktif: (g.status_aktif !== undefined) ? g.status_aktif : true,
-          foto_url: (g.foto_url && g.foto_url !== '-' && !g.foto_url.includes('unsplash')) ? g.foto_url : (g.foto && g.foto !== '-' && !g.foto.includes('unsplash')) ? g.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`
+          foto_url: (g.foto_url && g.foto_url.trim() !== '' && g.foto_url !== '-') ? g.foto_url : (g.foto && g.foto.trim() !== '' && g.foto !== '-') ? g.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`
         })) : DEFAULT_SCHOOL_DATA.guru,
         berita: (raw.berita && Array.isArray(raw.berita) && raw.berita.length > 0) ? raw.berita.map((b, idx) => ({
           id: b.id || b.id_konten || `NWS-${idx + 1}`,
@@ -209,7 +209,7 @@ const SchoolAPI = {
           tanggal: b.tanggal || b.tanggal_event || '2026-10-09',
           ringkasan: b.ringkasan || b.isi_lengkap || b.isi || '',
           isi: b.isi || b.isi_lengkap || b.ringkasan || '',
-          gambar_url: (b.gambar_url && b.gambar_url !== '-' && !b.gambar_url.includes('unsplash')) ? b.gambar_url : (b.gambar && b.gambar !== '-' && !b.gambar.includes('unsplash')) ? b.gambar : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`,
+          gambar_url: (b.gambar_url && b.gambar_url.trim() !== '' && b.gambar_url !== '-') ? b.gambar_url : (b.gambar && b.gambar.trim() !== '' && b.gambar !== '-') ? b.gambar : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`,
           status_tampil: (b.status_tampil !== undefined) ? b.status_tampil : true
         })) : DEFAULT_SCHOOL_DATA.berita,
         prestasi: (raw.prestasi && Array.isArray(raw.prestasi) && raw.prestasi.length > 0) ? raw.prestasi.map((p, idx) => ({
@@ -219,13 +219,13 @@ const SchoolAPI = {
           nama: p.nama || p.nama_siswa || 'Siswa Berprestasi',
           tingkat: p.tingkat || 'Kota Tangerang',
           tahun: p.tahun || '2026',
-          foto_url: (p.foto_url && p.foto_url !== '-' && !p.foto_url.includes('unsplash')) ? p.foto_url : (p.foto && p.foto !== '-' && !p.foto.includes('unsplash')) ? p.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`
+          foto_url: (p.foto_url && p.foto_url.trim() !== '' && p.foto_url !== '-') ? p.foto_url : (p.foto && p.foto.trim() !== '' && p.foto !== '-') ? p.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`
         })) : DEFAULT_SCHOOL_DATA.prestasi,
         galeri: (raw.galeri && Array.isArray(raw.galeri) && raw.galeri.length > 0) ? raw.galeri.map((f, idx) => ({
           id: f.id || f.id_foto || `FTO-${idx + 1}`,
           judul: f.judul || f.judul_foto || 'Dokumentasi Sekolah',
           kategori: f.kategori || 'Kegiatan',
-          foto_url: (f.foto_url && f.foto_url !== '-' && !f.foto_url.includes('unsplash')) ? f.foto_url : (f.foto && f.foto !== '-' && !f.foto.includes('unsplash')) ? f.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`,
+          foto_url: (f.foto_url && f.foto_url.trim() !== '' && f.foto_url !== '-') ? f.foto_url : (f.foto && f.foto.trim() !== '' && f.foto !== '-') ? f.foto : `asset/images/sdnsukasari4/images ${(idx % 4) + 1}.jpg`,
           tanggal: f.tanggal || '2026-10-09',
           keterangan: f.keterangan || f.judul || '',
           status_tampil: (f.status_tampil !== undefined) ? f.status_tampil : true
