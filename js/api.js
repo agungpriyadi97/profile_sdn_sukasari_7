@@ -13,7 +13,7 @@ const API_CONFIG = {
   TIMEOUT: 10000
 };
 
-// Data Fallback jika API backend belum ada data / offline
+// Data Fallback jika API backend belum ada data / offline (Menggunakan Aset Gambar Lokal SDN Sukasari 4)
 const DEFAULT_SCHOOL_DATA = {
   profil: {
     nama_sekolah: 'SD Negeri Sukasari 4 Kota Tangerang',
@@ -34,7 +34,7 @@ const DEFAULT_SCHOOL_DATA = {
       kategori: 'Pimpinan',
       urutan: 1,
       status_aktif: 'Aktif',
-      foto_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400'
+      foto_url: 'asset/images/sdnsukasari4/images 2.jpg'
     },
     {
       id: 'GTK-002',
@@ -43,7 +43,7 @@ const DEFAULT_SCHOOL_DATA = {
       kategori: 'Pendidik',
       urutan: 2,
       status_aktif: 'Aktif',
-      foto_url: 'https://images.unsplash.com/photo-1580894732413-a70d68f23719?auto=format&fit=crop&q=80&w=400'
+      foto_url: 'asset/images/sdnsukasari4/images 3.jpg'
     },
     {
       id: 'GTK-003',
@@ -52,7 +52,7 @@ const DEFAULT_SCHOOL_DATA = {
       kategori: 'Pendidik',
       urutan: 3,
       status_aktif: 'Aktif',
-      foto_url: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400'
+      foto_url: 'asset/images/sdnsukasari4/images 4.jpg'
     },
     {
       id: 'GTK-004',
@@ -61,7 +61,7 @@ const DEFAULT_SCHOOL_DATA = {
       kategori: 'Tenaga Kependidikan',
       urutan: 4,
       status_aktif: 'Aktif',
-      foto_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400'
+      foto_url: 'asset/images/sdnsukasari4/images 1.jpg'
     }
   ],
   berita: [
@@ -72,7 +72,7 @@ const DEFAULT_SCHOOL_DATA = {
       tanggal: '2026-10-05',
       ringkasan: 'Tim Pramuka Regu Penggalang SDN Sukasari 4 Kota Tangerang berhasil memborong piala kejuaraan dalam ajang Lomba Tingkat Pramuka.',
       isi: 'Prestasi membanggakan kembali diukir oleh peserta didik SDN Sukasari 4 Kota Tangerang. Dalam ajang Lomba Pramuka Penggalang SD se-Kota Tangerang, kontingen sekolah berhasil meraih Predikat Juara Utama dan Regu Berprestasi Tinggi. Kepala Sekolah, Ibu Romlah, S.Pd., M.Pd. menyampaikan apresiasi setinggi-tingginya kepada para pembina dan seluruh anggota regu.',
-      gambar_url: 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=800',
+      gambar_url: 'asset/images/sdnsukasari4/images 1.jpg',
       status_tampil: 'Tampil'
     },
     {
@@ -82,7 +82,7 @@ const DEFAULT_SCHOOL_DATA = {
       tanggal: '2026-09-28',
       ringkasan: 'Sebagai Sekolah Ramah Anak Terstandarisasi PISA, SDN Sukasari 4 terus meningkatkan fasilitas sarana dan prasarana lingkungan belajar yang aman dan nyaman.',
       isi: 'SDN Sukasari 4 Kota Tangerang senantiasa berkomitmen menciptakan lingkungan sekolah yang ramah anak, ramah inklusi, dan aman bagi perkembangan mental serta fisik siswa. Standarisasi PISA menjadi wujud nyata pemenuhan hak anak di lingkungan pendidikan.',
-      gambar_url: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=800',
+      gambar_url: 'asset/images/sdnsukasari4/images 4.jpg',
       status_tampil: 'Tampil'
     },
     {
@@ -92,7 +92,7 @@ const DEFAULT_SCHOOL_DATA = {
       tanggal: '2026-09-15',
       ringkasan: 'Informasi jalur zonasi, afirmasi, dan perpindahan tugas orang tua untuk calon siswa baru SDN Sukasari 4 Kota Tangerang.',
       isi: 'Pendaftaran PPDB SDN Sukasari 4 Kota Tangerang diselenggarakan secara resmi melalui portal online Dinas Pendidikan Kota Tangerang di https://ppdb.tangerangkota.go.id. Orang tua calon siswa diimbau mempersiapkan dokumen kelengkapan.',
-      gambar_url: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=800',
+      gambar_url: 'asset/images/sdnsukasari4/images 3.jpg',
       status_tampil: 'Tampil'
     }
   ],
@@ -104,7 +104,7 @@ const DEFAULT_SCHOOL_DATA = {
       nama: 'Tim Regu Pramuka Penggalang SDN Sukasari 4',
       tingkat: 'Kota Tangerang',
       tahun: '2026',
-      foto_url: 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=400'
+      foto_url: 'asset/images/sdnsukasari4/images 1.jpg'
     },
     {
       id: 'PRS-002',
@@ -113,7 +113,7 @@ const DEFAULT_SCHOOL_DATA = {
       nama: 'Muhammad Rizky Pratama',
       tingkat: 'Kecamatan Tangerang',
       tahun: '2026',
-      foto_url: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=400'
+      foto_url: 'asset/images/sdnsukasari4/images 3.jpg'
     },
     {
       id: 'PRS-003',
@@ -122,7 +122,7 @@ const DEFAULT_SCHOOL_DATA = {
       nama: 'Siti Aisyah & Tim Tari Tradisional',
       tingkat: 'Kota Tangerang',
       tahun: '2025',
-      foto_url: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=400'
+      foto_url: 'asset/images/sdnsukasari4/images 4.jpg'
     }
   ],
   users: [
@@ -177,7 +177,7 @@ const SchoolAPI = {
             kategori: g.kategori || 'Pendidik',
             urutan: g.urutan || 99,
             status_aktif: g.status_aktif || 'Aktif',
-            foto_url: (g.foto && g.foto !== '-') ? g.foto : (g.foto_url && g.foto_url !== '-') ? g.foto_url : 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400'
+            foto_url: (g.foto && g.foto !== '-') ? g.foto : (g.foto_url && g.foto_url !== '-') ? g.foto_url : 'asset/images/sdnsukasari4/images 2.jpg'
           })) : DEFAULT_SCHOOL_DATA.guru,
           berita: (raw.berita && raw.berita.length > 0) ? raw.berita.map(b => ({
             id: b.id || b.id_konten,
@@ -186,7 +186,7 @@ const SchoolAPI = {
             tanggal: b.tanggal || b.tanggal_event,
             ringkasan: b.ringkasan,
             isi: b.isi || b.isi_lengkap || b.ringkasan,
-            gambar_url: (b.gambar && b.gambar !== '-') ? b.gambar : (b.gambar_url && b.gambar_url !== '-') ? b.gambar_url : 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=800',
+            gambar_url: (b.gambar && b.gambar !== '-') ? b.gambar : (b.gambar_url && b.gambar_url !== '-') ? b.gambar_url : 'asset/images/sdnsukasari4/images 1.jpg',
             status_tampil: b.status_tampil || 'Tampil'
           })) : DEFAULT_SCHOOL_DATA.berita,
           prestasi: (raw.prestasi && raw.prestasi.length > 0) ? raw.prestasi.map(p => ({
@@ -196,7 +196,7 @@ const SchoolAPI = {
             nama: p.nama || p.nama_siswa,
             tingkat: p.tingkat,
             tahun: p.tahun || '2026',
-            foto_url: (p.foto && p.foto !== '-') ? p.foto : (p.foto_url && p.foto_url !== '-') ? p.foto_url : 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=400'
+            foto_url: (p.foto && p.foto !== '-') ? p.foto : (p.foto_url && p.foto_url !== '-') ? p.foto_url : 'asset/images/sdnsukasari4/images 3.jpg'
           })) : DEFAULT_SCHOOL_DATA.prestasi,
           users: (raw.users && raw.users.length > 0) ? raw.users : DEFAULT_SCHOOL_DATA.users
         };

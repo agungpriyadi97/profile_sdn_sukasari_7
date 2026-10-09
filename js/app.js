@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (photoUrl && photoUrl !== '-' && photoUrl.trim() !== '') {
       return photoUrl;
     }
-    return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=16a34a&color=fff&size=200&bold=true`;
+    return `asset/images/sdnsukasari4/images 2.jpg`;
   }
 
   // 2. Render Direktori Guru & Staf
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return `
         <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition duration-300 flex flex-col items-center text-center group">
           <div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-brand-500 to-emerald-300 mb-4 group-hover:scale-105 transition duration-300">
-            <img src="${avatarSrc}" alt="${guru.nama}" class="w-full h-full object-cover rounded-full bg-slate-100" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(guru.nama)}&background=16a34a&color=fff&size=200'">
+            <img src="${avatarSrc}" alt="${guru.nama}" class="w-full h-full object-cover rounded-full bg-slate-100" onerror="this.src='asset/images/sdnsukasari4/images 2.jpg'">
           </div>
           <span class="px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-700 text-[11px] font-bold uppercase tracking-wider mb-2">
             ${guru.kategori || 'Pendidik'}
@@ -231,8 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const isAgenda = item.tipe === 'Agenda';
       const badgeClass = isAgenda ? 'bg-amber-500 text-white' : 'bg-brand-600 text-white';
       const defaultImg = isAgenda 
-        ? 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=800'
-        : 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=800';
+        ? 'asset/images/sdnsukasari4/images 3.jpg'
+        : 'asset/images/sdnsukasari4/images 1.jpg';
       const imgSrc = (item.gambar_url && item.gambar_url !== '-') ? item.gambar_url : defaultImg;
 
       return `
@@ -288,8 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const defaultImg = item.tipe === 'Agenda'
-      ? 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=800'
-      : 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=800';
+      ? 'asset/images/sdnsukasari4/images 3.jpg'
+      : 'asset/images/sdnsukasari4/images 1.jpg';
     document.getElementById('modal-image').src = (item.gambar_url && item.gambar_url !== '-') ? item.gambar_url : defaultImg;
 
     newsModal.classList.remove('hidden');
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     achievementGrid.innerHTML = state.prestasi.map(item => {
-      const defaultImg = 'https://images.unsplash.com/photo-1526976668912-1a811878dd37?auto=format&fit=crop&q=80&w=400';
+      const defaultImg = 'asset/images/sdnsukasari4/images 3.jpg';
       const imgSrc = (item.foto_url && item.foto_url !== '-') ? item.foto_url : defaultImg;
 
       return `
